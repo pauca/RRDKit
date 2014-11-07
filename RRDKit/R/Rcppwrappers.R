@@ -101,7 +101,7 @@ molGetProps <- function( m ){
 }
 
 molsGetProps <- function( ms ){
-  if(!is.list(m)){ warning("Invalid input")}
+  if(!is.list(ms)){ warning("Invalid input")}
   lprops<- lapply(ms,molGetProps)
   n <- sort(unique(unlist(lapply(lprops,function(l)names(l)))))
   m <- lapply(lprops,function(x) { u <- unlist(x)[n];names(u)<-n;return(u)})
