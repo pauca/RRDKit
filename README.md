@@ -38,13 +38,16 @@ molsGetProps( mols )
 molSetProp( mol  ,key , value)  
 molsSetProp ( mols  ,key , values )  
 
-### molecule viewers
+### Molecule viewers 
+
+Next functions open a browser with a 2D representation of the molecules.
+
 showmol(mol)  
 showmols(mol)  
 showmols.grid(mols)  
-
-### descriptors
 mol2svg(mol)   
+
+### Descriptors
 mol2maccs(mol)  
 mol2morgan(mol)  
 mol2mw(mol)  
@@ -53,6 +56,6 @@ mol2LogP(mol)
 mol2murcko(mol)  
 computeGasteigerCharges(mol)  
 
-### others
+### Others
 SubstructMatch(  mol , query )  
 
