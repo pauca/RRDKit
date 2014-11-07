@@ -13,13 +13,30 @@
 # You should have received a copy of the GNU General Public License
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
-#loadModule("p_smiles2mol",T) 
-#loadModule("RWMol",T) 
-
-
-.onAttach <- function(libname, pkgname) {
-  ver <- read.dcf(file=system.file("DESCRIPTION", package=pkgname),
-                  fields="Version")
-  packageStartupMessage(paste(pkgname, ver))
-  packageStartupMessage(paste("Using RDKit from $RDBASE =", Sys.getenv("RDBASE"),collapse = " "))
+  
+molSupplierApply <- function( molSupplier, fun, ...){
+  l1 <- list()
+  while(!molSupplier_atEnd(molSupplier)){
+    mol <- molSupplier_next(molSupplier)
+    res <- tryCatch( fun(mol,...), error= function(e) NA )
+    l1[[length(l1)+1]]<-res
+  }
+  molSupplier_reset(molSupplier)
+  return(l1)
 }
+
+getBRICSFragments<-function( mol ){
+  f <- fragmentOnBRICSBonds(mol)
+  ff <- unique(unlist(strsplit(mol2smiles(f),"\\.")))
+  return(ff)
+
+
+p_getValidSubrfagemnts <- function(mol,mf){
+  indx <- unlist(sapply(mf,function(f){
+    SubstructMatch(mol,smarts2mol(f))
+  }))
+  return(mf[indx])
+}
+
+ 
+

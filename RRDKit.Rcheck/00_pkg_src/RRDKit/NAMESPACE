@@ -1,0 +1,8 @@
+useDynLib(RRDKit)
+exportPattern("^[[:alpha:]]+")
+
+import(testthat) 
+import(Rcpp)
+#importFrom(Rcpp, loadModule)
+#importFrom(Rcpp, evalCpp)
+
