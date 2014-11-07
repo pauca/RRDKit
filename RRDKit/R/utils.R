@@ -29,7 +29,7 @@ getBRICSFragments<-function( mol ){
   f <- fragmentOnBRICSBonds(mol)
   ff <- unique(unlist(strsplit(mol2smiles(f),"\\.")))
   return(ff)
-
+}
 
 p_getValidSubrfagemnts <- function(mol,mf){
   indx <- unlist(sapply(mf,function(f){

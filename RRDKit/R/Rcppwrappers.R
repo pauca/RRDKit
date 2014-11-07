@@ -15,7 +15,6 @@
 
 library(Rcpp) 
 
-
 showmol<-function( ptr , open = T ){
   svg <- mol2svg(ptr)
   fileName <- tempfile(pattern = "", tmpdir = tempdir(), fileext = ".svg")

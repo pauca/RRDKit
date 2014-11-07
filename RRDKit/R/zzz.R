@@ -17,12 +17,9 @@
 #loadModule("RWMol",T) 
 
 
-
 .onAttach <- function(libname, pkgname) {
   ver <- read.dcf(file=system.file("DESCRIPTION", package=pkgname),
                   fields="Version")
   packageStartupMessage(paste(pkgname, ver))
-  packageStartupMessage(paste("Using RDKit from $RDBASE =", Sys.getenv("RDBASE"), collapse = " ") )
-  
+  packageStartupMessage(paste("Using RDKit from $RDBASE =", Sys.getenv("RDBASE"),collapse = " "))
 }
-
