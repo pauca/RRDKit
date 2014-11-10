@@ -1,3 +1,8 @@
+---
+output:
+  html_document:
+    toc: yes
+---
 RRDKit
 ======
 
@@ -21,6 +26,7 @@ basic operations from RDKit. If you are looking for a more richer tool check RDK
   
 ## Usage
 
+```
 library(RRDKit)  
 mols1 <- read.sdf(system.file("data/aspirine.sdf", package="RRDKit"))  
 mols2 <- read.sdf(system.file("data/clozapine.sdf", package="RRDKit"))  
@@ -28,10 +34,13 @@ mols <- c(mols1,mols2)
 mol2mw(mols[[1]])   
 sapply( mols, mol2mw )  
 showmols(mols)  
+```
 
 ## Functions
 
 ### Read and Write
+
+```
 read.sdf( file )  
 write.sdf( file , mols )  
 
@@ -39,24 +48,26 @@ smiles2mol( smile )
 smarts2mol( smart )  
 
 mol2smiles( mol )  
-
+```
 ### Changing Properties
+```
 molGetProps( mol )  
 molsGetProps( mols )  
 
 molSetProp( mol  ,key , value)  
 molsSetProp ( mols  ,key , values )  
-
+```
 ### Molecule viewers 
 
 Next functions open a browser with a 2D representation of the molecules.
-
+```
 showmol(mol)  
-showmols(mol)  
+showmols(mols)  
 showmols.grid(mols)  
 mol2svg(mol)   
-
+```
 ### Descriptors
+```
 mol2maccs(mol)  
 mol2morgan(mol)  
 mol2mw(mol)  
@@ -64,7 +75,8 @@ mol2TPSA(mol)
 mol2LogP(mol)  
 mol2murcko(mol)  
 computeGasteigerCharges(mol)  
-
+```
 ### Others
+```
 SubstructMatch(  mol , query )  
-
+```
