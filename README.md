@@ -19,7 +19,16 @@ basic operations from RDKit. If you are looking for a more richer tool check RDK
 * Download RRDKit_X.X.tar.gz
 * Run R CMD INSTALL RRDKit_X.X.tar.gz.
   
-  
+## Usage
+
+library(RRDKit)  
+mols1 <- read.sdf(system.file("data/aspirine.sdf", package="RRDKit"))  
+mols2 <- read.sdf(system.file("data/clozapine.sdf", package="RRDKit"))  
+mols <- c(mols1,mols2)
+mol2mw(mols[[1]])   
+sapply( mols, mol2mw )  
+showmols(mols)  
+
 ## Functions
 
 ### Read and Write
