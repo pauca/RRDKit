@@ -137,6 +137,7 @@ std::string mol2svg( SEXP xp ){
     std::vector<int> drawing=RDKit::Drawing::MolToDrawing(*mol);
           Rcout << "The value is3 " <<   std::endl;
     std::string svg=RDKit::Drawing::DrawingToSVG(drawing);
+     
     return svg;
 }
 
