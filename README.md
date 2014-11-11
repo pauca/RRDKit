@@ -13,10 +13,12 @@ basic operations from RDKit. If you are looking for a more richer tool check RDK
 
 * R Packages: Rcpp, testthat.
 
-* An RDKit installation and $RDBASE (the root directory of the RDKit distribution  e.g. ~/RDKit  ) configured. Follow the
-  instuctions in [http://www.rdkit.org/docs/Install.html](http://www.rdkit.org/docs/Install.html)). Check "Building the RDKit" section. Note that Python wrappers can be disabled.
+* An RDKit installation. Preferably use RDKit version RDKit_2014_09_1. Follow the
+  instuctions in [http://www.rdkit.org/docs/Install.html](http://www.rdkit.org/docs/Install.html)). Check "Building the RDKit" section. Note that Python wrappers can be disabled (cmake    -D RDK_BUILD_PYTHON_WRAPPERS= ..). 
+
+* RDBASE (the root directory of the RDKit distribution  e.g. ~/RDKit  ) configured. 
   
-*  LD_LIBRARY_PATH: make sure it includes $RDBASE/lib and wherever the boost shared libraries (libboost_python.so.1.XX.XX) were installed.
+* LD_LIBRARY_PATH must include $RDBASE/lib.
   
 ## Installation
 
