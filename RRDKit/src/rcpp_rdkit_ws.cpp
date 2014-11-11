@@ -130,7 +130,7 @@ std::string mol2smiles( SEXP xp ){
 
 // [[Rcpp::export]]
 std::string mol2svg( SEXP xp ){
-    ROMol *mol = p_getMol(xp);
+    ROMol *mol = (ROMol*)(R_ExternalPtrAddr(xp));;
     RDDepict::compute2DCoords(*mol);
     std::vector<int> drawing=RDKit::Drawing::MolToDrawing(*mol);
     std::string svg=RDKit::Drawing::DrawingToSVG(drawing);

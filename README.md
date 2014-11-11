@@ -9,10 +9,14 @@ basic operations from RDKit. If you are looking for a more richer tool check RDK
 
 ## Prerequisites
 
-* R >= 3.1.0 
+* R >= 3.1.0
 
-* An RDKit installation and $RDBASE configured. ( You can follow the
-  instructions in [http://www.rdkit.org/docs/Install.html](http://www.rdkit.org/docs/Install.html)). Note: no Python bindings are needed. Check "Building the RDKit" section.
+* R Packages: Rcpp, testthat.
+
+* An RDKit installation and $RDBASE configured. Follow the
+  instuctions in [http://www.rdkit.org/docs/Install.html](http://www.rdkit.org/docs/Install.html)). Check "Building the RDKit" section.
+  
+* $LD_LIBRARY_PATH should contain path folder with libboost_python.so.1.XX.XX and $RDBASE/lib .  
   
 ## Installation
 
