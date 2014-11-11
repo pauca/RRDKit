@@ -16,7 +16,7 @@ return svg;
 
 int main(void){
 RWMol *mol=SmilesToMol("CCC");
-std::string svg=MolToSVG(*mol);
+std::string svg=_MolToSVG(*mol);
 std::cout <<svg<<std::endl;
 delete mol;
 return(0);
