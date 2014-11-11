@@ -130,7 +130,7 @@ std::string mol2smiles( SEXP xp ){
 
 // [[Rcpp::export]]
 std::string mol2svg( SEXP xp ){
-    RWMol *mol = (RWMol*)(R_ExternalPtrAddr(xp));
+    ROMol *mol = (ROMol*)(R_ExternalPtrAddr(xp));
       Rcout << "The value is 1" <<   std::endl;
     RDDepict::compute2DCoords(*mol);
       Rcout << "The value is2 " <<   std::endl;
