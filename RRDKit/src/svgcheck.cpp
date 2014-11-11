@@ -8,7 +8,7 @@
 #include <GraphMol/MolDrawing/DrawingToSVG.h>
 
 using namespace RDKit;
-std::string MolToSVG(const ROMol &mol){
+std::string _MolToSVG(const ROMol &mol){
 std::vector<int> drawing=RDKit::Drawing::MolToDrawing(mol);
 std::string svg=RDKit::Drawing::DrawingToSVG(drawing);
 return svg;
