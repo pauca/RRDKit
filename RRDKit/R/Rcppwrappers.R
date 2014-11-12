@@ -56,27 +56,25 @@ close(file)
 }
 
 showmols.grid<-function( ptr , open = T){
-  svgs <- sapply(unlist(ptr),showmol,open=F) 
-  
+  svgs <- sapply(unlist(ptr),showmol,open=F)
   head <- ' <!DOCTYPE html><html>
-  <head>
-  <style> 
-    .molimg {
-      height:200px
-    }
-    .molgrid {
-       -webkit-column-count: 5; /* Chrome, Safari, Opera */
-        -moz-column-count: 5; /* Firefox */
-        column-count: 5;
-    }
-   .molbox{ 
-      display:table;
-   }
-  </style>
-  </head>  
-  <body><div class="molgrid">'
+<head>
+<style>
+.molimg {
+height:200px
+}
+.molgrid {
+-webkit-column-count: 5; /* Chrome, Safari, Opera */
+-moz-column-count: 5; /* Firefox */
+column-count: 5;
+}
+.molbox{
+display:table;
+}
+</style>
+</head>
+<body><div class="molgrid">'
   tail <- '</div></body></html>'
-  
   fileName <- tempfile(pattern = "", tmpdir = tempdir(), fileext = ".html")
   file <- file(fileName,"w")
   writeLines(head,file)
@@ -85,10 +83,47 @@ showmols.grid<-function( ptr , open = T){
     file))
   writeLines(tail,file)
   close(file)
-  
   if(open){ browseURL(paste("file:///",fileName ,sep=""))}
   return(fileName)
 }
+
+
+# showmols.shiny<-function( ptr , data = data.frame()){
+#   require(shiny)
+#    svgs <- sapply(unlist(ptr),mol2svg) 
+#                     
+#    svgs <- sapply( svgs, function(s) paste( "<div class='molma'>", 
+#                                             gsub("svg:","",s,fixed=T),
+#                                             "</div>"))
+#   #svgs <- sapply(unlist(ptr),function(s) paste( "<img src='",showmol(s,F),"' />",sep="") )
+#   server <- function(input, output) {
+#     output$genericTable <-  renderTable({
+#       if(nrow(data)==length(svgs)){
+#        # cbind(data.frame(id=1:length(svgs), img=svgs),data)               
+#       }else{
+#         data.frame(id=1:length(svgs), img=svgs)
+#       }
+#     } , sanitize.text.function = function(x) x)
+#   }  
+#   ui <- shinyUI(fluidPage(
+#     tags$head(
+#       tags$style(HTML("
+#        .molma > svg{
+#           transform: scale(0.2, 0.2);
+#        }
+#        #genericTable > table > tbody > tr > :first-child{
+#           display:none;
+#        }
+#     "))
+#     ),                      
+#     mainPanel(
+#     tableOutput("genericTable")
+#   )))
+#   message("Press ESC to continue.")
+#   shinyApp(ui = ui, server = server)
+# }
+
+
 
 molGetProps <- function( m ){
   if(is.list(m)){ warning("Invalid input")}

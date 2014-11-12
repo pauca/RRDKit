@@ -8,6 +8,5 @@ Maintainer: Pau Carrio <paucarrio@gmail.com>
 Description: This package provides a pragmatic interface to some of the RDKit functions in R.It is intended to work smoothly with R workflows.
 License:GPL-3
 LinkingTo: Rcpp
-Require:XML
 Depends:R (>= 3.1.0), Rcpp (>= 0.11.1),testthat
 Encoding: UTF-8
