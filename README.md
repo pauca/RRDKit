@@ -13,7 +13,7 @@ basic operations from RDKit. If you are looking for a more richer tool check RDK
 
 * R Packages: Rcpp, testthat.
 
-* An RDKit installation. Preferably use RDKit version RDKit_2014_09_1. Follow the
+* A RDKit installation. Preferably use RDKit version RDKit_2014_09_1. Follow the
   instuctions in [http://www.rdkit.org/docs/Install.html](http://www.rdkit.org/docs/Install.html)). Check "Building the RDKit" section. Note that Python wrappers can be disabled (cmake    -D RDK_BUILD_PYTHON_WRAPPERS= ..). 
 
 * RDBASE (the root directory of the RDKit distribution  e.g. ~/RDKit  ) configured. 
