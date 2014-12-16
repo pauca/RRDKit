@@ -32,7 +32,7 @@ cmake    -D RDK_BUILD_PYTHON_WRAPPERS= -D RDK_BUILD_INCHI_SUPPORT=ON ..
 ```
 wget https://github.com/pauca/RRDKit/raw/master/RRDKit_X.X.tar.gz
 R CMD INSTALL RRDKit_X.X.tar.gz 
-``
+```
 
   
 ## Usage
