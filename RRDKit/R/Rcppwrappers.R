@@ -87,11 +87,11 @@ display:table;
   return(fileName)
 }
 
-
+# 
 # showmols.shiny<-function( ptr , data = data.frame()){
 #   require(shiny)
 #    svgs <- sapply(unlist(ptr),mol2svg) 
-#                     
+#    svgs <- sapply( svgs, function(s) gsub("<svg:svg",'<svg:svg viewBox="0 0 250 230"  preserveAspectRatio="xMinYMin meet" ',s,fixed=T)) 
 #    svgs <- sapply( svgs, function(s) paste( "<div class='molma'>", 
 #                                             gsub("svg:","",s,fixed=T),
 #                                             "</div>"))
@@ -99,7 +99,7 @@ display:table;
 #   server <- function(input, output) {
 #     output$genericTable <-  renderTable({
 #       if(nrow(data)==length(svgs)){
-#        # cbind(data.frame(id=1:length(svgs), img=svgs),data)               
+#         cbind(data.frame(id=1:length(svgs), img=svgs),data)               
 #       }else{
 #         data.frame(id=1:length(svgs), img=svgs)
 #       }
@@ -108,9 +108,9 @@ display:table;
 #   ui <- shinyUI(fluidPage(
 #     tags$head(
 #       tags$style(HTML("
-#        .molma > svg{
-#           transform: scale(0.2, 0.2);
-#        }
+#        //.molma > svg{
+#          // transform: scale(0.2, 0.2);
+#       // }
 #        #genericTable > table > tbody > tr > :first-child{
 #           display:none;
 #        }
