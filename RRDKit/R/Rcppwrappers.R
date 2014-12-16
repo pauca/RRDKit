@@ -126,7 +126,7 @@ display:table;
 
 
 molGetProps <- function( m ){
-  if(is.list(m)){ warning("Invalid input")}
+  if(is.list(m)){ stop("Invalid input (needs a single molecule)")}
   l <- list()
   for( p in p_molGetPropList(m)){
      l[[p]]<- tryCatch( p_molGetProp(m,p), error=function(e){return (NA)})
@@ -135,7 +135,7 @@ molGetProps <- function( m ){
 }
 
 molsGetProps <- function( ms ){
-  if(!is.list(ms)){ warning("Invalid input")}
+  if(!is.list(ms)){ stop("Invalid input (needs a list of molecules)")}
   lprops<- lapply(ms,molGetProps)
   n <- sort(unique(unlist(lapply(lprops,function(l)names(l)))))
   m <- lapply(lprops,function(x) { u <- unlist(x)[n];names(u)<-n;return(u)})

@@ -4,3 +4,4 @@
 RRDKit.Rcheck
 *.o
 *.so
+RRDKit/src/*o

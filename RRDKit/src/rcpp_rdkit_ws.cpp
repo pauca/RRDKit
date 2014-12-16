@@ -36,7 +36,7 @@
 #include <GraphMol/Fingerprints/MACCS.h>
 #include <GraphMol/Fingerprints/MorganFingerprints.h>
 #include <DataStructs/ExplicitBitVect.h> 
- 
+
 #include <vector>
 #include <algorithm>
 #include <iostream> 
@@ -325,4 +325,3 @@ std::vector< double > computeGasteigerCharges( SEXP xp ){
     return  charges;    
 }
 
- 
