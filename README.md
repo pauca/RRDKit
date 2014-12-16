@@ -28,8 +28,12 @@ cmake    -D RDK_BUILD_PYTHON_WRAPPERS= -D RDK_BUILD_INCHI_SUPPORT=ON ..
   
 ## Installation
 
-* Download latest RRDKit_X.X.tar.gz
-* Run R CMD INSTALL RRDKit_X.X.tar.gz.
+* Download latest RRDKit and Install:
+```
+wget https://github.com/pauca/RRDKit/raw/master/RRDKit_X.X.tar.gz
+R CMD INSTALL RRDKit_X.X.tar.gz 
+``
+
   
 ## Usage
 
