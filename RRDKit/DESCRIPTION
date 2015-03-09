@@ -1,8 +1,8 @@
 Package: RRDKit
 Type: Package
 Title: An a pragmatic interface to RDKit in R
-Version: 0.8
-Date: 2014-11-10
+Version: 0.9
+Date: 2014-12-19
 Author: Pau Carrio
 Maintainer: Pau Carrio <paucarrio@gmail.com>
 Description: This package provides a pragmatic interface to some of the RDKit functions in R.It is intended to work smoothly with R workflows.

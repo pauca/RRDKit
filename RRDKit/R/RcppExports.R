@@ -25,6 +25,10 @@ mol2maccs <- function(xp) {
     .Call('RRDKit_mol2maccs', PACKAGE = 'RRDKit', xp)
 }
 
+mol2topologicalFingerprints <- function(xp) {
+    .Call('RRDKit_mol2topologicalFingerprints', PACKAGE = 'RRDKit', xp)
+}
+
 mol2morgan <- function(xp, radius = 2L, nBits = 2048L, useFeatures = FALSE) {
     .Call('RRDKit_mol2morgan', PACKAGE = 'RRDKit', xp, radius, nBits, useFeatures)
 }

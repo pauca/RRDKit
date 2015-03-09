@@ -95,6 +95,21 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
+// mol2topologicalFingerprints
+IntegerVector mol2topologicalFingerprints(SEXP xp);
+RcppExport SEXP RRDKit_mol2topologicalFingerprints(SEXP xpSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
+        IntegerVector __result = mol2topologicalFingerprints(xp);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // mol2morgan
 IntegerVector mol2morgan(SEXP xp, unsigned int radius = 2, unsigned int nBits = 2048, bool useFeatures = false);
 RcppExport SEXP RRDKit_mol2morgan(SEXP xpSEXP, SEXP radiusSEXP, SEXP nBitsSEXP, SEXP useFeaturesSEXP) {

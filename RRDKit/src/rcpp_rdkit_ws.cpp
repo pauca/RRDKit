@@ -35,6 +35,7 @@
 #include <GraphMol/ChemTransforms/ChemTransforms.h>
 #include <GraphMol/Fingerprints/MACCS.h>
 #include <GraphMol/Fingerprints/MorganFingerprints.h>
+#include <GraphMol/Fingerprints/Fingerprints.h>
 #include <DataStructs/ExplicitBitVect.h> 
 
 #include <vector>
@@ -144,6 +145,25 @@ IntegerVector mol2maccs(  SEXP xp){
     
     if( mol ){
      ExplicitBitVect *bv = MACCSFingerprints::getFingerprintAsBitVect ( *mol  ); 
+      
+     if(bv){
+      IntegerVector v = IntegerVector( bv->getNumBits ());
+      for( i = 0;  i< bv->getNumBits ();i++ ){
+        v(i) = bv->getBit(i)?1:0;
+      }      
+      return v;
+      }
+    }
+    return IntegerVector(0); 
+}
+
+// [[Rcpp::export]]
+IntegerVector mol2topologicalFingerprints(  SEXP xp){
+    int i;
+    RWMol *mol = p_getMol(xp);  
+    
+    if( mol ){
+     ExplicitBitVect *bv = RDKit::RDKFingerprintMol ( *mol  ); 
       
      if(bv){
       IntegerVector v = IntegerVector( bv->getNumBits ());
