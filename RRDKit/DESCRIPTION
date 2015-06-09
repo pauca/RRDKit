@@ -1,6 +1,6 @@
 Package: RRDKit
 Type: Package
-Title: An a pragmatic interface to RDKit in R
+Title: A pragmatic interface to RDKit in R
 Version: 0.11
 Date: 2015-06-04
 Author: Pau Carrio
