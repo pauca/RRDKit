@@ -291,3 +291,42 @@ mol2smiles <- function( mols ){
   p_vectorize( mols,  p_mol2smiles)  
 }
 
+#' Calculate TPSA
+#'
+#' @param mols A list of molecules
+#' @return TPSA
+mol2TPSA <- function( mols ){
+  p_vectorize( mols,  p_mol2TPSA)  
+} 
+
+#' Calculate LogP
+#'
+#' @param mols A list of molecules
+#' @return LogP
+mol2LogP <- function( mols ){
+  p_vectorize( mols,  p_mol2LogP)  
+} 
+
+#' Calculate murcko scaffold
+#'
+#' @param mols A list of molecules
+#' @return murcko scaffolds
+mol2murcko <- function( mols ){
+  p_vectorize( mols,  p_mol2murcko)  
+} 
+
+#' computeGasteigerCharges
+#'
+#' @param mols A list of molecules
+#' @return computeGasteigerCharges
+computeGasteigerCharges <- function( mols ){
+  p_vectorize( mols,  p_computeGasteigerCharges)  
+} 
+
+#' Calculate kekulize
+#'
+#' @param mols A list of molecules
+#' @return kekulize
+kekulize <- function( mols ){
+  p_vectorize( mols,  p_kekulize)  
+} 

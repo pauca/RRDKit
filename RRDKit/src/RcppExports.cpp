@@ -326,76 +326,76 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
-// mol2TPSA
-double mol2TPSA(SEXP xp);
-RcppExport SEXP RRDKit_mol2TPSA(SEXP xpSEXP) {
+// p_mol2TPSA
+double p_mol2TPSA(SEXP xp);
+RcppExport SEXP RRDKit_p_mol2TPSA(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        double __result = mol2TPSA(xp);
+        double __result = p_mol2TPSA(xp);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// mol2LogP
-double mol2LogP(SEXP xp);
-RcppExport SEXP RRDKit_mol2LogP(SEXP xpSEXP) {
+// p_mol2LogP
+double p_mol2LogP(SEXP xp);
+RcppExport SEXP RRDKit_p_mol2LogP(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        double __result = mol2LogP(xp);
+        double __result = p_mol2LogP(xp);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// mol2murcko
-std::string mol2murcko(SEXP xp);
-RcppExport SEXP RRDKit_mol2murcko(SEXP xpSEXP) {
+// p_mol2murcko
+std::string p_mol2murcko(SEXP xp);
+RcppExport SEXP RRDKit_p_mol2murcko(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        std::string __result = mol2murcko(xp);
+        std::string __result = p_mol2murcko(xp);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// computeGasteigerCharges
-std::vector< double > computeGasteigerCharges(SEXP xp);
-RcppExport SEXP RRDKit_computeGasteigerCharges(SEXP xpSEXP) {
+// p_computeGasteigerCharges
+std::vector< double > p_computeGasteigerCharges(SEXP xp);
+RcppExport SEXP RRDKit_p_computeGasteigerCharges(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        std::vector< double > __result = computeGasteigerCharges(xp);
+        std::vector< double > __result = p_computeGasteigerCharges(xp);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// kekulize
-void kekulize(SEXP xp, bool markAtomsBonds = true, unsigned int maxBackTracks = 100);
-RcppExport SEXP RRDKit_kekulize(SEXP xpSEXP, SEXP markAtomsBondsSEXP, SEXP maxBackTracksSEXP) {
+// p_kekulize
+void p_kekulize(SEXP xp, bool markAtomsBonds = true, unsigned int maxBackTracks = 100);
+RcppExport SEXP RRDKit_p_kekulize(SEXP xpSEXP, SEXP markAtomsBondsSEXP, SEXP maxBackTracksSEXP) {
 BEGIN_RCPP
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
         Rcpp::traits::input_parameter< bool >::type markAtomsBonds(markAtomsBondsSEXP );
         Rcpp::traits::input_parameter< unsigned int >::type maxBackTracks(maxBackTracksSEXP );
-        kekulize(xp, markAtomsBonds, maxBackTracks);
+        p_kekulize(xp, markAtomsBonds, maxBackTracks);
     }
     return R_NilValue;
 END_RCPP

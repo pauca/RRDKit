@@ -349,22 +349,15 @@ double p_mol2mw(  SEXP xp ){
     return  Descriptors::calcExactMW( *mol  );
 }
 
-//' Compute TPSA
-//'
-//' @param xp a molecule
-//' @return the TPSA
 // [[Rcpp::export]]
-double mol2TPSA(  SEXP xp ){    
+double p_mol2TPSA(  SEXP xp ){    
     RWMol * mol =  p_getMol(xp);        
     return  Descriptors::calcTPSA( *mol  );
 }
 
-//' Compute LogP
-//'
-//' @param xp a molecule
-//' @return the LogP
+
 // [[Rcpp::export]]
-double mol2LogP(  SEXP xp ){    
+double p_mol2LogP(  SEXP xp ){    
     RWMol * mol =  p_getMol(xp);    
     double logp=0 ;
     double mw =0  ;
@@ -372,12 +365,9 @@ double mol2LogP(  SEXP xp ){
     return logp;
 }
 
-//' Compute Murcko scaffold
-//'
-//' @param xp a molecule
-//' @return the Murcko scaffold
+ 
 // [[Rcpp::export]]
-std::string mol2murcko( SEXP xp ){
+std::string p_mol2murcko( SEXP xp ){
     RWMol *mol  =  p_getMol(xp);  
     ROMol *molm = MurckoDecompose ( *mol  ); 
     std::string smi = MolToSmiles(*molm);
@@ -390,7 +380,7 @@ std::string mol2murcko( SEXP xp ){
 //' @param xp a molecule
 //' @return the GasteigerCharges
 // [[Rcpp::export]]
-std::vector< double > computeGasteigerCharges( SEXP xp ){
+std::vector< double > p_computeGasteigerCharges( SEXP xp ){
   //computeGasteigerCharges(smiles2mol("c1cccc2c1CCCC2"))
     ROMol *mol  =  p_getMol(xp); 
     std::vector< double >  charges( mol->getNumAtoms());
@@ -404,7 +394,7 @@ std::vector< double > computeGasteigerCharges( SEXP xp ){
 //' @param  markAtomsBonds  markAtomsBonds
 //' @param  maxBackTracks  maxBackTracks
 // [[Rcpp::export]]
-void kekulize( SEXP xp,bool    markAtomsBonds = true,
+void p_kekulize( SEXP xp,bool    markAtomsBonds = true,
 		unsigned int  	maxBackTracks = 100  ){
     RWMol *mol  =  p_getMol(xp);  
     MolOps::Kekulize(*mol,markAtomsBonds,maxBackTracks);    

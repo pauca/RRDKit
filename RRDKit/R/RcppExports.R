@@ -115,36 +115,24 @@ p_mol2mw <- function(xp) {
     .Call('RRDKit_p_mol2mw', PACKAGE = 'RRDKit', xp)
 }
 
-#' Compute TPSA
-#'
-#' @param xp a molecule
-#' @return the TPSA
-mol2TPSA <- function(xp) {
-    .Call('RRDKit_mol2TPSA', PACKAGE = 'RRDKit', xp)
+p_mol2TPSA <- function(xp) {
+    .Call('RRDKit_p_mol2TPSA', PACKAGE = 'RRDKit', xp)
 }
 
-#' Compute LogP
-#'
-#' @param xp a molecule
-#' @return the LogP
-mol2LogP <- function(xp) {
-    .Call('RRDKit_mol2LogP', PACKAGE = 'RRDKit', xp)
+p_mol2LogP <- function(xp) {
+    .Call('RRDKit_p_mol2LogP', PACKAGE = 'RRDKit', xp)
 }
 
-#' Compute Murcko scaffold
-#'
-#' @param xp a molecule
-#' @return the Murcko scaffold
-mol2murcko <- function(xp) {
-    .Call('RRDKit_mol2murcko', PACKAGE = 'RRDKit', xp)
+p_mol2murcko <- function(xp) {
+    .Call('RRDKit_p_mol2murcko', PACKAGE = 'RRDKit', xp)
 }
 
 #' Compute GasteigerCharges
 #'
 #' @param xp a molecule
 #' @return the GasteigerCharges
-computeGasteigerCharges <- function(xp) {
-    .Call('RRDKit_computeGasteigerCharges', PACKAGE = 'RRDKit', xp)
+p_computeGasteigerCharges <- function(xp) {
+    .Call('RRDKit_p_computeGasteigerCharges', PACKAGE = 'RRDKit', xp)
 }
 
 #' Kekulize molecule
@@ -152,8 +140,8 @@ computeGasteigerCharges <- function(xp) {
 #' @param xp a molecule
 #' @param  markAtomsBonds  markAtomsBonds
 #' @param  maxBackTracks  maxBackTracks
-kekulize <- function(xp, markAtomsBonds = TRUE, maxBackTracks = 100L) {
-    invisible(.Call('RRDKit_kekulize', PACKAGE = 'RRDKit', xp, markAtomsBonds, maxBackTracks))
+p_kekulize <- function(xp, markAtomsBonds = TRUE, maxBackTracks = 100L) {
+    invisible(.Call('RRDKit_p_kekulize', PACKAGE = 'RRDKit', xp, markAtomsBonds, maxBackTracks))
 }
 
 p_molCompute2DCoords <- function(xp) {
