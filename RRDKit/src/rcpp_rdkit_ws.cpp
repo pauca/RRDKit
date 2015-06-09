@@ -375,10 +375,7 @@ std::string p_mol2murcko( SEXP xp ){
     return (smi);
 }
 
-//' Compute GasteigerCharges
-//'
-//' @param xp a molecule
-//' @return the GasteigerCharges
+
 // [[Rcpp::export]]
 std::vector< double > p_computeGasteigerCharges( SEXP xp ){
   //computeGasteigerCharges(smiles2mol("c1cccc2c1CCCC2"))
@@ -388,11 +385,7 @@ std::vector< double > p_computeGasteigerCharges( SEXP xp ){
     return  charges;    
 }
 
-//' Kekulize molecule
-//'
-//' @param xp a molecule
-//' @param  markAtomsBonds  markAtomsBonds
-//' @param  maxBackTracks  maxBackTracks
+
 // [[Rcpp::export]]
 void p_kekulize( SEXP xp,bool    markAtomsBonds = true,
 		unsigned int  	maxBackTracks = 100  ){
