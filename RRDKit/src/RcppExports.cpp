@@ -69,14 +69,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // smarts2mol
-SEXP smarts2mol(std::string smi);
-RcppExport SEXP RRDKit_smarts2mol(SEXP smiSEXP) {
+SEXP smarts2mol(std::string smarts);
+RcppExport SEXP RRDKit_smarts2mol(SEXP smartsSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< std::string >::type smi(smiSEXP );
-        SEXP __result = smarts2mol(smi);
+        Rcpp::traits::input_parameter< std::string >::type smarts(smartsSEXP );
+        SEXP __result = smarts2mol(smarts);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
@@ -143,21 +143,6 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
-// mol2topologicalFingerprints
-IntegerVector mol2topologicalFingerprints(SEXP xp);
-RcppExport SEXP RRDKit_mol2topologicalFingerprints(SEXP xpSEXP) {
-BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        IntegerVector __result = mol2topologicalFingerprints(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
-END_RCPP
-}
 // mol2morgan
 IntegerVector mol2morgan(SEXP xp, unsigned int radius = 2, unsigned int nBits = 2048, bool useFeatures = false);
 RcppExport SEXP RRDKit_mol2morgan(SEXP xpSEXP, SEXP radiusSEXP, SEXP nBitsSEXP, SEXP useFeaturesSEXP) {
@@ -174,19 +159,6 @@ BEGIN_RCPP
     }
     UNPROTECT(1);
     return __sexp_result;
-END_RCPP
-}
-// molSupplierWrite
-void molSupplierWrite(std::string file, SEXP xp);
-RcppExport SEXP RRDKit_molSupplierWrite(SEXP fileSEXP, SEXP xpSEXP) {
-BEGIN_RCPP
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< std::string >::type file(fileSEXP );
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        molSupplierWrite(file, xp);
-    }
-    return R_NilValue;
 END_RCPP
 }
 // p_writeSdf
@@ -221,44 +193,44 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
-// molSupplier_atEnd
-bool molSupplier_atEnd(SEXP xp);
-RcppExport SEXP RRDKit_molSupplier_atEnd(SEXP xpSEXP) {
+// p_molSupplier_atEnd
+bool p_molSupplier_atEnd(SEXP xp);
+RcppExport SEXP RRDKit_p_molSupplier_atEnd(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        bool __result = molSupplier_atEnd(xp);
+        bool __result = p_molSupplier_atEnd(xp);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// molSupplier_next
-SEXP molSupplier_next(SEXP xp);
-RcppExport SEXP RRDKit_molSupplier_next(SEXP xpSEXP) {
+// p_molSupplier_next
+SEXP p_molSupplier_next(SEXP xp);
+RcppExport SEXP RRDKit_p_molSupplier_next(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        SEXP __result = molSupplier_next(xp);
+        SEXP __result = p_molSupplier_next(xp);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
     return __sexp_result;
 END_RCPP
 }
-// molSupplier_reset
-void molSupplier_reset(SEXP xp);
-RcppExport SEXP RRDKit_molSupplier_reset(SEXP xpSEXP) {
+// p_molSupplier_reset
+void p_molSupplier_reset(SEXP xp);
+RcppExport SEXP RRDKit_p_molSupplier_reset(SEXP xpSEXP) {
 BEGIN_RCPP
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        molSupplier_reset(xp);
+        p_molSupplier_reset(xp);
     }
     return R_NilValue;
 END_RCPP

@@ -9,6 +9,12 @@ p_Inchi2InchiKey <- function(x) {
     .Call('RRDKit_p_Inchi2InchiKey', PACKAGE = 'RRDKit', x)
 }
 
+#' Map Inchi to molecule
+#'
+#' @param x a  molecule
+#' @param sanitize bool
+#' @param removeHs bool
+#' @return a molecule
 Inchi2Mol <- function(x, sanitize = FALSE, removeHs = FALSE) {
     .Call('RRDKit_Inchi2Mol', PACKAGE = 'RRDKit', x, sanitize, removeHs)
 }
@@ -17,8 +23,12 @@ p_smile2mol <- function(smi, sanitize = TRUE) {
     .Call('RRDKit_p_smile2mol', PACKAGE = 'RRDKit', smi, sanitize)
 }
 
-smarts2mol <- function(smi) {
-    .Call('RRDKit_smarts2mol', PACKAGE = 'RRDKit', smi)
+#' map a smarts to a molecule
+#'
+#' @param smarts a smarts string
+#' @return a molecule
+smarts2mol <- function(smarts) {
+    .Call('RRDKit_smarts2mol', PACKAGE = 'RRDKit', smarts)
 }
 
 p_molIsNil <- function(xp) {
@@ -33,20 +43,23 @@ p_mol2svg <- function(xp) {
     .Call('RRDKit_p_mol2svg', PACKAGE = 'RRDKit', xp)
 }
 
+#' map a molecule to a maccs fingerprints
+#'
+#' @param xp a molecule
+#' @return a vector
 mol2maccs <- function(xp) {
     .Call('RRDKit_mol2maccs', PACKAGE = 'RRDKit', xp)
 }
 
-mol2topologicalFingerprints <- function(xp) {
-    .Call('RRDKit_mol2topologicalFingerprints', PACKAGE = 'RRDKit', xp)
-}
-
+#' map a molecule to a morgan fingerprints (atom environement)
+#'
+#' @param xp a molecule
+#' @param radius radius of scaffold
+#' @param nBits final length
+#' @param useFeatures useFeatures
+#' @return a vector
 mol2morgan <- function(xp, radius = 2L, nBits = 2048L, useFeatures = FALSE) {
     .Call('RRDKit_mol2morgan', PACKAGE = 'RRDKit', xp, radius, nBits, useFeatures)
-}
-
-molSupplierWrite <- function(file, xp) {
-    invisible(.Call('RRDKit_molSupplierWrite', PACKAGE = 'RRDKit', file, xp))
 }
 
 p_writeSdf <- function(file, pv, setForceV3000 = FALSE) {
@@ -57,16 +70,16 @@ p_molSupplier <- function(file, sanitize = TRUE, removeHs = TRUE, strictParsing 
     .Call('RRDKit_p_molSupplier', PACKAGE = 'RRDKit', file, sanitize, removeHs, strictParsing)
 }
 
-molSupplier_atEnd <- function(xp) {
-    .Call('RRDKit_molSupplier_atEnd', PACKAGE = 'RRDKit', xp)
+p_molSupplier_atEnd <- function(xp) {
+    .Call('RRDKit_p_molSupplier_atEnd', PACKAGE = 'RRDKit', xp)
 }
 
-molSupplier_next <- function(xp) {
-    .Call('RRDKit_molSupplier_next', PACKAGE = 'RRDKit', xp)
+p_molSupplier_next <- function(xp) {
+    .Call('RRDKit_p_molSupplier_next', PACKAGE = 'RRDKit', xp)
 }
 
-molSupplier_reset <- function(xp) {
-    invisible(.Call('RRDKit_molSupplier_reset', PACKAGE = 'RRDKit', xp))
+p_molSupplier_reset <- function(xp) {
+    invisible(.Call('RRDKit_p_molSupplier_reset', PACKAGE = 'RRDKit', xp))
 }
 
 p_molGetPropList <- function(xp) {
@@ -81,10 +94,19 @@ p_molSetProp <- function(xp, property, key) {
     invisible(.Call('RRDKit_p_molSetProp', PACKAGE = 'RRDKit', xp, property, key))
 }
 
+#' split molecule to brics fragment
+#'
+#' @param xp a molecule
+#' @return a BRICS fragment
 fragmentOnBRICSBonds <- function(xp) {
     .Call('RRDKit_fragmentOnBRICSBonds', PACKAGE = 'RRDKit', xp)
 }
 
+#' SubstructMatch
+#'
+#' @param xp_mol a molecule
+#' @param xp_query a template molecule (from a smart)
+#' @return bool
 SubstructMatch <- function(xp_mol, xp_query) {
     .Call('RRDKit_SubstructMatch', PACKAGE = 'RRDKit', xp_mol, xp_query)
 }
@@ -93,22 +115,43 @@ p_mol2mw <- function(xp) {
     .Call('RRDKit_p_mol2mw', PACKAGE = 'RRDKit', xp)
 }
 
+#' Compute TPSA
+#'
+#' @param xp a molecule
+#' @return the TPSA
 mol2TPSA <- function(xp) {
     .Call('RRDKit_mol2TPSA', PACKAGE = 'RRDKit', xp)
 }
 
+#' Compute LogP
+#'
+#' @param xp a molecule
+#' @return the LogP
 mol2LogP <- function(xp) {
     .Call('RRDKit_mol2LogP', PACKAGE = 'RRDKit', xp)
 }
 
+#' Compute Murcko scaffold
+#'
+#' @param xp a molecule
+#' @return the Murcko scaffold
 mol2murcko <- function(xp) {
     .Call('RRDKit_mol2murcko', PACKAGE = 'RRDKit', xp)
 }
 
+#' Compute GasteigerCharges
+#'
+#' @param xp a molecule
+#' @return the GasteigerCharges
 computeGasteigerCharges <- function(xp) {
     .Call('RRDKit_computeGasteigerCharges', PACKAGE = 'RRDKit', xp)
 }
 
+#' Kekulize molecule
+#'
+#' @param xp a molecule
+#' @param  markAtomsBonds  markAtomsBonds
+#' @param  maxBackTracks  maxBackTracks
 kekulize <- function(xp, markAtomsBonds = TRUE, maxBackTracks = 100L) {
     invisible(.Call('RRDKit_kekulize', PACKAGE = 'RRDKit', xp, markAtomsBonds, maxBackTracks))
 }

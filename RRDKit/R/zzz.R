@@ -13,8 +13,6 @@
 # You should have received a copy of the GNU General Public License
 # along with RRDKitInchi.  If not, see <http://www.gnu.org/licenses/>.
 
-#loadModule("p_smiles2mol",T) 
-#loadModule("RWMol",T) 
 
 
 .onAttach <- function(libname, pkgname) {

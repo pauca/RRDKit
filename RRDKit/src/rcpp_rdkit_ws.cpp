@@ -67,9 +67,13 @@ SEXP   p_smile2mol(std::string smi  ,  bool sanitize = true ){
   }
 }
 
+//' map a smarts to a molecule
+//'
+//' @param smarts a smarts string
+//' @return a molecule
 // [[Rcpp::export]] 
-SEXP   smarts2mol(std::string smi ){
-  RWMol *m = SmartsToMol( smi );
+SEXP   smarts2mol(std::string smarts ){
+  RWMol *m = SmartsToMol( smarts );
   if(m){
     SEXP ptr =  R_MakeExternalPtr(m, R_NilValue ,R_NilValue);
     return (ptr);
@@ -147,6 +151,10 @@ std::string p_mol2svg( SEXP xp ){
 
 
 
+//' map a molecule to a maccs fingerprints
+//'
+//' @param xp a molecule
+//' @return a vector
 // [[Rcpp::export]]
 IntegerVector mol2maccs(  SEXP xp){
     int i;
@@ -166,25 +174,33 @@ IntegerVector mol2maccs(  SEXP xp){
     return IntegerVector(0); 
 }
 
-// [[Rcpp::export]]
-IntegerVector mol2topologicalFingerprints(  SEXP xp){
-    int i;
-    RWMol *mol = p_getMol(xp);  
-    
-    if( mol ){
-     ExplicitBitVect *bv = RDKit::RDKFingerprintMol ( *mol  ); 
-      
-     if(bv){
-      IntegerVector v = IntegerVector( bv->getNumBits ());
-      for( i = 0;  i< bv->getNumBits ();i++ ){
-        v(i) = bv->getBit(i)?1:0;
-      }      
-      return v;
-      }
-    }
-    return IntegerVector(0); 
-}
+//// [[Rcpp::export]]
+//IntegerVector mol2topologicalFingerprints(  SEXP xp){
+//    int i;
+//    RWMol *mol = p_getMol(xp);  
+//    
+//    if( mol ){
+//     ExplicitBitVect *bv = RDKit::RDKFingerprintMol ( *mol  ); 
+//      
+//     if(bv){
+//      IntegerVector v = IntegerVector( bv->getNumBits ());
+//      for( i = 0;  i< bv->getNumBits ();i++ ){
+//        v(i) = bv->getBit(i)?1:0;
+//      }      
+//      return v;
+//      }
+//    }
+//    return IntegerVector(0); 
+//}
 
+
+//' map a molecule to a morgan fingerprints (atom environement)
+//'
+//' @param xp a molecule
+//' @param radius radius of scaffold
+//' @param nBits final length
+//' @param useFeatures useFeatures
+//' @return a vector
 // [[Rcpp::export]]
 IntegerVector mol2morgan(  SEXP xp , unsigned int radius=2,unsigned int nBits=2048, 
     bool useFeatures=false){
@@ -210,18 +226,18 @@ IntegerVector mol2morgan(  SEXP xp , unsigned int radius=2,unsigned int nBits=20
 }
 
 
-// [[Rcpp::export]]
-void molSupplierWrite(  std::string file, SEXP xp){
-    
-    SDMolSupplier * molsupp = p_getMolSDMolSupplier(xp);  
-    SDWriter::SDWriter  sdw  = SDWriter::SDWriter(file);
-    
-    while(! molsupp->atEnd()){
-      ROMol  * mol = molsupp->next();
-      sdw.write( *mol , RDKit::defaultConfId);
-    }
-    sdw.close();     
-} 
+//// [[Rcpp::export]]
+//void p_molSupplierWrite(  std::string file, SEXP xp ){
+//    
+//    SDMolSupplier * molsupp = p_getMolSDMolSupplier(xp);  
+//    SDWriter::SDWriter  sdw  = SDWriter::SDWriter(file);
+//    
+//    while(! molsupp->atEnd()){
+//      ROMol  * mol = molsupp->next();
+//      sdw.write( *mol , RDKit::defaultConfId);
+//    }
+//    sdw.close();     
+//} 
 
 // [[Rcpp::export]]
 void p_writeSdf(  std::string file,  SEXP  pv, bool setForceV3000 = false){
@@ -252,14 +268,14 @@ SEXP  p_molSupplier(std::string file,bool sanitize=true,
 }
 
 // [[Rcpp::export]] 
-bool  molSupplier_atEnd(SEXP xp ){
+bool  p_molSupplier_atEnd(SEXP xp ){
   SDMolSupplier * molsupp = p_getMolSDMolSupplier(xp);        
   bool b = molsupp->atEnd(); 
   return b;
 }
 
 // [[Rcpp::export]] 
-SEXP  molSupplier_next(SEXP xp ){
+SEXP  p_molSupplier_next(SEXP xp ){
   SDMolSupplier * molsupp = p_getMolSDMolSupplier(xp);  
   bool b = molsupp->atEnd(); 
   if( !b){
@@ -271,7 +287,7 @@ SEXP  molSupplier_next(SEXP xp ){
 }
 
 // [[Rcpp::export]] 
-void  molSupplier_reset(SEXP xp ){
+void  p_molSupplier_reset(SEXP xp ){
   SDMolSupplier * molsupp = p_getMolSDMolSupplier(xp);  
   molsupp->reset();   
 }
@@ -300,6 +316,10 @@ void p_molSetProp(  SEXP xp , SEXP property, SEXP key ){
     mol->setProp<std::string> ( key_,property_ ) ;
 } 
 
+//' split molecule to brics fragment
+//'
+//' @param xp a molecule
+//' @return a BRICS fragment
 // [[Rcpp::export]]
 SEXP fragmentOnBRICSBonds(  SEXP xp ){    
     ROMol *mol=(ROMol*)(R_ExternalPtrAddr(xp));
@@ -309,6 +329,11 @@ SEXP fragmentOnBRICSBonds(  SEXP xp ){
     return (ptr);
 } 
 
+//' SubstructMatch
+//'
+//' @param xp_mol a molecule
+//' @param xp_query a template molecule (from a smart)
+//' @return bool
 // [[Rcpp::export]]
 bool SubstructMatch(  SEXP xp_mol , SEXP xp_query  ){    
     MatchVectType match;
@@ -317,18 +342,27 @@ bool SubstructMatch(  SEXP xp_mol , SEXP xp_query  ){
     return  SubstructMatch(*mol,*query,match);    
 } 
 
+
 // [[Rcpp::export]]
 double p_mol2mw(  SEXP xp ){    
     RWMol * mol =  p_getMol(xp);        
     return  Descriptors::calcExactMW( *mol  );
 }
 
+//' Compute TPSA
+//'
+//' @param xp a molecule
+//' @return the TPSA
 // [[Rcpp::export]]
 double mol2TPSA(  SEXP xp ){    
     RWMol * mol =  p_getMol(xp);        
     return  Descriptors::calcTPSA( *mol  );
 }
 
+//' Compute LogP
+//'
+//' @param xp a molecule
+//' @return the LogP
 // [[Rcpp::export]]
 double mol2LogP(  SEXP xp ){    
     RWMol * mol =  p_getMol(xp);    
@@ -338,6 +372,10 @@ double mol2LogP(  SEXP xp ){
     return logp;
 }
 
+//' Compute Murcko scaffold
+//'
+//' @param xp a molecule
+//' @return the Murcko scaffold
 // [[Rcpp::export]]
 std::string mol2murcko( SEXP xp ){
     RWMol *mol  =  p_getMol(xp);  
@@ -347,6 +385,10 @@ std::string mol2murcko( SEXP xp ){
     return (smi);
 }
 
+//' Compute GasteigerCharges
+//'
+//' @param xp a molecule
+//' @return the GasteigerCharges
 // [[Rcpp::export]]
 std::vector< double > computeGasteigerCharges( SEXP xp ){
   //computeGasteigerCharges(smiles2mol("c1cccc2c1CCCC2"))
@@ -356,6 +398,11 @@ std::vector< double > computeGasteigerCharges( SEXP xp ){
     return  charges;    
 }
 
+//' Kekulize molecule
+//'
+//' @param xp a molecule
+//' @param  markAtomsBonds  markAtomsBonds
+//' @param  maxBackTracks  maxBackTracks
 // [[Rcpp::export]]
 void kekulize( SEXP xp,bool    markAtomsBonds = true,
 		unsigned int  	maxBackTracks = 100  ){

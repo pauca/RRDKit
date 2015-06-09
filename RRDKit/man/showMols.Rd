@@ -26,6 +26,7 @@ Show molecules as 2D in browser
 \examples{
 mols <- smiles2mol(c("CC(=O)NC1=CC=C(O)C=C1","CC(=O)OC1=CC=CC=C1C(O)=O"))
 names <- c("Paracetamol", "Aspirin")
-showMols(mols, names=names)
+
+# showMols(mols, names=names)
 }
 

@@ -26,12 +26,12 @@ p_vectorize <- function( mols , foo , ... ){
 
 p_molSupplierApply <- function( molSupplier, fun, ...){
   l1 <- list()
-  while(!molSupplier_atEnd(molSupplier)){
-    mol <- molSupplier_next(molSupplier)
+  while(!p_molSupplier_atEnd(molSupplier)){
+    mol <- p_molSupplier_next(molSupplier)
     res <- tryCatch( fun(mol,...), error= function(e) NA )
     l1[[length(l1)+1]]<-res
   }
-  molSupplier_reset(molSupplier)
+  p_molSupplier_reset(molSupplier)
   return(l1)
 }
 
@@ -116,7 +116,10 @@ is.molecule<-function(mol){
     result
 }
  
-
+#' unfactor
+#'
+#' @param f factor
+#' @param type type
 unfactor <- function (f, type = "n") 
 {
   if (!is.factor(f)) {
@@ -133,11 +136,17 @@ unfactor <- function (f, type = "n")
   }
 }
 
+#' unfactor shortcut for character factors
+#'
+#' @param f factor
 unfactorc <- function (f) 
 {
   unfactor(f, "c")
 }
 
+#' unfactor shortcut for numeric factors
+#'
+#' @param f factor
 unfactorn <- function (f) 
 {
   unfactor(f, "n")

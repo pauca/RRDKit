@@ -49,7 +49,8 @@ smiles2mol <- function( smi  ,  sanitize = TRUE ){
 #'
 #' mols <- smiles2mol(c("CC(=O)NC1=CC=C(O)C=C1","CC(=O)OC1=CC=CC=C1C(O)=O"))
 #' names <- c("Paracetamol", "Aspirin")
-#' showMols(mols, names=names)
+#' 
+#' # showMols(mols, names=names)
 showMols<-function( mols , open = T, names = "",  svg.size=200 ,
                     grid = FALSE){
   if(!is.list(mols)){
@@ -101,7 +102,7 @@ showMols<-function( mols , open = T, names = "",  svg.size=200 ,
 #'
 #' mols <- smiles2mol(c("CC(=O)NC1=CC=C(O)C=C1","CC(=O)OC1=CC=CC=C1C(O)=O"))
 #' names <- c("Paracetamol", "Aspirin")
-#' showMolsGrid(mols)
+#' # showMolsGrid(mols)
 showMolsGrid<-function( mols , group = 1, id="", open = T ,  svg.size=200){
   if(length(mols)!=length(group)){
     group <- rep(1,length(mols))
@@ -153,6 +154,10 @@ showMolsGrid<-function( mols , group = 1, id="", open = T ,  svg.size=200){
   return(fileName)
 }
 
+#' Map molecule properties to a list
+#'
+#' @param m A molecule
+#' @return A list of properties
 molGetProps <- function( m ){
   if(is.list(m)){ stop("Invalid input (needs a single molecule)")}
   l <- list()
@@ -229,7 +234,6 @@ read.sdf<-function(file,sanitize=T, removeHs=T,  strictParsing =T){
 #' 
 #' compute2D(mols)
 #' write.sdf("mols.sdf",mols)
-
 write.sdf <- function(file,mols,setForceV3000=F){
   p_writeSdf(file,mols,setForceV3000)
 }

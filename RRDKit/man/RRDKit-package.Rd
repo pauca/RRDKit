@@ -16,8 +16,8 @@ RRDKit provides some basic functions to visualize the molecules.
 \tabular{ll}{
 Package: \tab RRDKit\cr
 Type: \tab Package\cr
-Version: \tab 0.6\cr
-Date: \tab 2014-11-05\cr
+Version: \tab 0.11\cr
+Date: \tab 2015-06-09\cr
 License: \tab GPL-3\cr
 }
 
@@ -40,5 +40,7 @@ mols1 <- read.sdf(system.file("extdata/aspirine.sdf", package="RRDKit"))
 mols2 <- read.sdf(system.file("extdata/clozapine.sdf", package="RRDKit"))  
 mols <- c(mols1,mols2)
 mol2mw(mols)
+\dontrun{
 showMols(mols)  
+}
 }

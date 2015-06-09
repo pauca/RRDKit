@@ -43,11 +43,9 @@ mols1 <- read.sdf(system.file("extdata/aspirine.sdf", package="RRDKit"))
 mols2 <- read.sdf(system.file("extdata/clozapine.sdf", package="RRDKit"))  
 mols <- c(mols1,mols2)
 mol2mw(mols)
-showMols(mols)  
-
+showMols(mols)
 
 inchi <- mol2Inchi(mols)  
-
 Inchi2InchiKey(inchi)
 
 ```
