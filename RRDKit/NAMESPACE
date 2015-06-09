@@ -1,8 +1,9 @@
 useDynLib(RRDKit)
-exportPattern("^[[:alpha:]]+")
+#exportPattern("^[[:alpha:]]+")
+exportPattern("^[^p]")
 
 import(testthat) 
 import(Rcpp)
-#importFrom(Rcpp, loadModule)
-#importFrom(Rcpp, evalCpp)
+import(XML)
+
 

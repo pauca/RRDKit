@@ -48,15 +48,22 @@ using namespace RDKit;
 #include <R.h>
 #include <Rdefines.h>
 
+
+
  
 // [[Rcpp::export]] 
-SEXP   smiles2mol(std::string smi ){
-  RWMol *m = SmilesToMol( smi );
+SEXP   p_smile2mol(std::string smi  ,  bool sanitize = true ){
+  int sanitize_ = 0;
+  if( sanitize ){
+    sanitize_ = 1;
+  }
+
+  RWMol *m = SmilesToMol( smi ,0 , sanitize_  );
   if(m){
     SEXP ptr =  R_MakeExternalPtr(m, R_NilValue ,R_NilValue);
     return (ptr);
   }else{
-    throw std::invalid_argument("Smiles Parse Error");
+    throw std::invalid_argument("Smiles Parse Error" );
   }
 }
 
@@ -124,19 +131,21 @@ SDMolSupplier*  p_getMolSDMolSupplier(SEXP xp){
 }
 
 // [[Rcpp::export]]
-std::string mol2smiles( SEXP xp ){
+std::string p_mol2smiles( SEXP xp ){
     RWMol *mol = p_getMol(xp);  
     return MolToSmiles(*mol);
 }
 
 // [[Rcpp::export]]
-std::string mol2svg( SEXP xp ){
+std::string p_mol2svg( SEXP xp ){
     ROMol *mol = (ROMol*)(R_ExternalPtrAddr(xp));
     RDDepict::compute2DCoords(*mol);
     std::vector<int> drawing=RDKit::Drawing::MolToDrawing(*mol);
     std::string svg=RDKit::Drawing::DrawingToSVG(drawing);
     return svg;
 }
+
+
 
 // [[Rcpp::export]]
 IntegerVector mol2maccs(  SEXP xp){
@@ -203,8 +212,10 @@ IntegerVector mol2morgan(  SEXP xp , unsigned int radius=2,unsigned int nBits=20
 
 // [[Rcpp::export]]
 void molSupplierWrite(  std::string file, SEXP xp){
+    
     SDMolSupplier * molsupp = p_getMolSDMolSupplier(xp);  
     SDWriter::SDWriter  sdw  = SDWriter::SDWriter(file);
+    
     while(! molsupp->atEnd()){
       ROMol  * mol = molsupp->next();
       sdw.write( *mol , RDKit::defaultConfId);
@@ -213,24 +224,24 @@ void molSupplierWrite(  std::string file, SEXP xp){
 } 
 
 // [[Rcpp::export]]
-void p_writeSdf(  std::string file,  SEXP  pv){
+void p_writeSdf(  std::string file,  SEXP  pv, bool setForceV3000 = false){
     Rcpp::List v(pv);
     int i =0;
     SDWriter::SDWriter  sdw  = SDWriter::SDWriter(file); 
-    sdw.setForceV3000(false);
+    sdw.setForceV3000(setForceV3000);
     for (unsigned i = 0; i < v.size (); ++ i){
         RWMol *mol=(RWMol*)(R_ExternalPtrAddr(v[i]));
-       // sdw.write(  *mol , RDKit::defaultConfId);
-        sdw.write(  *mol , 0);
+         sdw.write(  *mol , RDKit::defaultConfId);
+         //sdw.write(  *mol , 0);
     }
-    sdw.close();     
- 
+    sdw.close();
 } 
  
 
 // [[Rcpp::export]] 
-SEXP  molSupplier(std::string file ){
-  SDMolSupplier * sp =  new SDMolSupplier( file );
+SEXP  p_molSupplier(std::string file,bool sanitize=true, 
+              bool removeHs=true, bool strictParsing =true){
+  SDMolSupplier * sp =  new SDMolSupplier( file, sanitize, removeHs, strictParsing );
   if(sp){
     //XPtr<RWMol> ptr(m, true);
     SEXP ptr =  R_MakeExternalPtr(sp,R_NilValue,R_NilValue);
@@ -299,7 +310,7 @@ SEXP fragmentOnBRICSBonds(  SEXP xp ){
 } 
 
 // [[Rcpp::export]]
-bool SubstructMatch(  SEXP xp_mol , SEXP xp_query ){    
+bool SubstructMatch(  SEXP xp_mol , SEXP xp_query  ){    
     MatchVectType match;
     ROMol *mol  =(ROMol*)(R_ExternalPtrAddr(xp_mol));
     ROMol *query=(ROMol*)(R_ExternalPtrAddr(xp_query));
@@ -307,7 +318,7 @@ bool SubstructMatch(  SEXP xp_mol , SEXP xp_query ){
 } 
 
 // [[Rcpp::export]]
-double mol2mw(  SEXP xp ){    
+double p_mol2mw(  SEXP xp ){    
     RWMol * mol =  p_getMol(xp);        
     return  Descriptors::calcExactMW( *mol  );
 }
@@ -345,3 +356,15 @@ std::vector< double > computeGasteigerCharges( SEXP xp ){
     return  charges;    
 }
 
+// [[Rcpp::export]]
+void kekulize( SEXP xp,bool    markAtomsBonds = true,
+		unsigned int  	maxBackTracks = 100  ){
+    RWMol *mol  =  p_getMol(xp);  
+    MolOps::Kekulize(*mol,markAtomsBonds,maxBackTracks);    
+}
+
+// [[Rcpp::export]]
+void p_molCompute2DCoords( SEXP xp ){
+    ROMol *mol = (ROMol*)(R_ExternalPtrAddr(xp));
+    RDDepict::compute2DCoords(*mol);
+}

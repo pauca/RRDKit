@@ -14,7 +14,7 @@
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
   
-molSupplierApply <- function( molSupplier, fun, ...){
+p_molSupplierApply <- function( molSupplier, fun, ...){
   l1 <- list()
   while(!molSupplier_atEnd(molSupplier)){
     mol <- molSupplier_next(molSupplier)
@@ -25,11 +25,37 @@ molSupplierApply <- function( molSupplier, fun, ...){
   return(l1)
 }
 
+#' Get unique BRICS fragments for a molecule
+#'
+#' @param mol a molecule
+#' @return Vector of BRICS fragments
 getBRICSFragments<-function( mol ){
   f <- fragmentOnBRICSBonds(mol)
   ff <- unique(unlist(strsplit(mol2smiles(f),"\\.")))
   return(ff)
 }
+
+#' Get FP defined by SMARTS
+#'
+#' @param mols A list of molecules
+#' @param smarts.mols A list of SMARTS molecules
+#' @return A bool matrix with one row per molecule and each column a SMARTS Fingerprint
+getSMARTSFP <- function(  mols, smarts.mols ){
+  r <- matrix(NA, ncol=length(smarts.mols),nrow=length(mols))
+  for( i in 1:length(mols)){
+    m<- mols[[i]]
+    for( j in 1:length(smarts.mols)){
+      sm <- NA
+      try({ 
+        sm <- substructMatch(m, smarts.mols[[j]])  
+      },silent=T)
+      r[i,j] <- sm
+      
+    }
+  }
+  r
+}
+
 
 p_getValidSubrfagemnts <- function(mol,mf){
   indx <- unlist(sapply(mf,function(f){
@@ -38,5 +64,71 @@ p_getValidSubrfagemnts <- function(mol,mf){
   return(mf[indx])
 }
 
+#' Clean a SVG provided by RDKit
+#'
+#' Cleaning conist on resizing
+#'
+#' @param svg a svg
+#' @param out.w output width
+#' @param out.h output height
+#' @return a SVG
+cleanSVG<-function( svg , out.w, out.h ){
+  root<-xmlTreeParse(svg,asText = T)
+  w <- xmlGetAttr( root$doc$children[[1]],"width")
+  w<-ifelse(is.null(w),"100",w)
+  w <- gsub("px","",w)
+  h <- xmlGetAttr( root$doc$children[[1]],"height")
+  h<-ifelse(is.null(h),"100",h)
+  h <- gsub("px","",h)
+  
+  xmlAttrs(root$doc$children[[1]]) <- c(width = out.w,
+                                        height = out.h,
+                                        viewBox = paste( " 0 0 ", w, h, sep=" "))
+  
+  svg2 <- toString(root$doc$children$svg)
+  svg2 <- gsub("\n","",svg2)
+  svg2 <- gsub("svg:","",svg2)
+  svg2 <- gsub("\"","\'",svg2)
+  return(svg2)
+}
+
+#' Check if object is a "nice" RDKit Molecule
+#'
+#' @param mol A molecule
+is.molecule<-function(mol){
+  # check if molecule is sanitized
+    result <- F    
+    tryCatch({
+      kekulize(mol)
+      s <- smiles2mol(mol2smiles(mol))      
+      result <- T
+    }, error = function(e) {})    
+    result
+}
  
 
+unfactor <- function (f, type = "n") 
+{
+  if (!is.factor(f)) {
+    return(f)
+  }
+  else {
+    f <- levels(f)[f]
+    if (type == "n") {
+      return(as.numeric(f))
+    }
+    if (type == "c") {
+      return(as.character(f))
+    }
+  }
+}
+
+unfactorc <- function (f) 
+{
+  unfactor(f, "c")
+}
+
+unfactorn <- function (f) 
+{
+  unfactor(f, "n")
+}

@@ -30,8 +30,8 @@ cmake    -D RDK_BUILD_PYTHON_WRAPPERS= -D RDK_BUILD_INCHI_SUPPORT=ON ..
 
 * Download latest RRDKit and Install:
 ```
-wget https://github.com/pauca/RRDKit/raw/master/RRDKit_X.X.tar.gz
-R CMD INSTALL RRDKit_X.X.tar.gz 
+library(devtools)
+install_github("pauca/RRDKit/RRDKit")
 ```
 
   
@@ -39,11 +39,11 @@ R CMD INSTALL RRDKit_X.X.tar.gz
 
 ```
 library(RRDKit)  
-mols1 <- read.sdf(system.file("data/aspirine.sdf", package="RRDKit"))  
-mols2 <- read.sdf(system.file("data/clozapine.sdf", package="RRDKit"))  
+mols1 <- read.sdf(system.file("extdata/aspirine.sdf", package="RRDKit"))  
+mols2 <- read.sdf(system.file("extdata/clozapine.sdf", package="RRDKit"))  
 mols <- c(mols1,mols2)
-sapply( mols, mol2mw )  
-showmols(mols)  
+mol2mw(mols)
+showMols(mols)  
 ```
 
 ## Functions
@@ -54,6 +54,10 @@ showmols(mols)
 read.sdf( file )  
 write.sdf( file , mols )  
 
+#Read a smi file as data frame:
+read.smi(file)
+
+
 smiles2mol( smile )  
 smarts2mol( smart )  
 
@@ -61,20 +65,19 @@ mol2smiles( mol )
 ```
 ### Changing Properties
 ```
-molGetProps( mol )  
 molsGetProps( mols )  
 
-molSetProp( mol  ,key , value)  
 molsSetProp ( mols  ,key , values )  
 ```
 ### Molecule viewers 
 
 Next functions open a browser with a 2D representation of the molecules.
 ```
-showmol(mol)  
-showmols(mols)  
-showmols.grid(mols)  
-mol2svg(mol)   
+
+showMols(mols)  
+showMolsGrid(mols)  
+mol2svg(mol)  
+molCompute2DCoords
 ```
 ### Descriptors
 ```

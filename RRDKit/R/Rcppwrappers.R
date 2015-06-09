@@ -15,150 +15,284 @@
 
 library(Rcpp) 
 
-showmol<-function( ptr , open = T ){
-  svg <- mol2svg(ptr)
-  fileName <- tempfile(pattern = "", tmpdir = tempdir(), fileext = ".svg")
-  file <- file(fileName,"w")
-  cat(svg,file=file)
-  close(file)
-  if(open){ browseURL(paste("file:///",fileName ,sep=""))}
-  return(fileName)
+#' Convert smiles to molecules
+#'
+#' @param smi a smile string or vector of strings
+#' @param sanitize toggles H removal and sanitization of the molecule
+#' @return List of molecules
+#' @examples
+#' mol <- smiles2mol("c1ccccc1")
+#' mols <- smiles2mol(c("c1ccccc1","CC(=O)OC1=CC=CC=C1C(O)=O"))
+smiles2mol <- function( smi  ,  sanitize = TRUE ){
+  sapply(smi,p_smile2mol,sanitize )
 }
 
-showmols<-function( ptr , open = T){
-  #svgs <- molSupplierApply(ptr,showmol,open=F)
-  svgs <- sapply(unlist(ptr),showmol,open=F) 
-  head <- ' <!DOCTYPE html><html>
+# showmol<-function( ptr , open = T ){
+#   svg <- mol2svg(ptr)
+#   fileName <- tempfile(pattern = "", tmpdir = tempdir(), fileext = ".svg")
+#   file <- file(fileName,"w")
+#   cat(svg,file=file)
+#   close(file)
+#   if(open){ browseURL(paste("file:///",fileName ,sep=""))}
+#   return(fileName)
+# }
+
+#' Show molecules as 2D in browser
+#'
+#' @param mols a list of molecules
+#' @param open if TRUE show output in browser
+#' @param names vector with mols ids
+#' @param svg.size  size of pictures
+#' @param grid show molecules as grid
+#' @return Path to temporary generated html file
+#' @examples
+#'
+#' mols <- smiles2mol(c("CC(=O)NC1=CC=C(O)C=C1","CC(=O)OC1=CC=CC=C1C(O)=O"))
+#' names <- c("Paracetamol", "Aspirin")
+#' showMols(mols, names=names)
+showMols<-function( mols , open = T, names = "",  svg.size=200 ,
+                    grid = FALSE){
+  if(!is.list(mols)){
+    mols <- list(mols)
+  }
+
+  if(length(names)==1){
+    names <- 1:length(mols)
+  }  
+  
+  svgs <- mol2svg( mols )
+  svgs <- sapply(svgs, cleanSVG , svg.size,svg.size)
+  
+  head <- paste( ' <!DOCTYPE html><html>
   <head>
-  <style> 
-    .molimg {
-      height:200px
-    }
-    th {
-      text-align:left;
-    }
+    <style>th {  text-align:left;    } ',
+  ifelse( grid ,"
+.molbox{
+    display: inline-block;
+  }",""),'
   </style>
   </head>  
-  <body><table><tr><th>Index</th><th>Mol</th></td>'
+  <body><table>')
   tail <- '</table></body></html>'
 
   fileName <- tempfile(pattern = "", tmpdir = tempdir(), fileext = ".html")
   file <- file(fileName,"w")
-writeLines(head,file)
-d <- sapply(1:length(svgs),function(i)writeLines(paste(
-  '<tr><td>',i,'</td><td><img class=molimg src="',svgs[[i]], '" alt="tanding on oval"></td></tr>',sep=""),
-  file))
-writeLines(tail,file)
-close(file)
+  writeLines(head,file)
+  d <- sapply(1:length(svgs),function(i)writeLines(
+    paste(
+      '<tr class="molbox"><td>',names[i],'</td> <td class="molimg" >',svgs[i],'</td></tr>',sep=""),
+      file))
+  writeLines(tail,file)
+  close(file)
   
  if(open){ browseURL(paste("file:///",fileName ,sep=""))}
   return(fileName)
 }
 
-showmols.grid<-function( ptr , open = T){
-  svgs <- sapply(unlist(ptr),showmol,open=F)
+#' Show molecules as 2D in browser
+#'
+#' @param mols a list of molecules
+#' @param open if TRUE show output in browser
+#' @param group groups of molecules
+#' @param id property id that should be used for naming molecules
+#' @param svg.size  size of pictures
+#' @return Path to temporary generated html file
+#' @examples
+#'
+#' mols <- smiles2mol(c("CC(=O)NC1=CC=C(O)C=C1","CC(=O)OC1=CC=CC=C1C(O)=O"))
+#' names <- c("Paracetamol", "Aspirin")
+#' showMolsGrid(mols)
+showMolsGrid<-function( mols , group = 1, id="", open = T ,  svg.size=200){
+  if(length(mols)!=length(group)){
+    group <- rep(1,length(mols))
+  }
+  svgs <-  mol2svg ( mols)
+  svgs <- sapply(svgs, cleanSVG , svg.size,svg.size)
+  if( id == ""){
+    ids <- paste( "MOL Nr:", 1:length(mols)," .", sep=" ")
+  }else{
+    ids <-  sapply( unlist(mols),function(p) RRDKit::molGetProps(p)[[id]])
+  }
   head <- ' <!DOCTYPE html><html>
-<head>
-<style>
-.molimg {
-height:200px
-}
-.molgrid {
--webkit-column-count: 5; /* Chrome, Safari, Opera */
--moz-column-count: 5; /* Firefox */
-column-count: 5;
-}
-.molbox{
-display:table;
-}
-</style>
-</head>
-<body><div class="molgrid">'
-  tail <- '</div></body></html>'
+  <head>
+  <style>
+  .molimg {    
+  }
+
+  .molgrid { 
+  }
+
+  .molbox{
+    display: inline-block;
+  }
+
+  .cluster-group{
+    border-style: solid;
+    border-width: 1px;
+  }
+  </style>
+  </head>
+  <body>'
+  tail <- '</body></html>'
   fileName <- tempfile(pattern = "", tmpdir = tempdir(), fileext = ".html")
   file <- file(fileName,"w")
   writeLines(head,file)
-  d <- sapply(1:length(svgs),function(i)writeLines(paste(
-    '<div class="molbox"><h3>',i,'</h3> <img class="molimg" src="',svgs[[i]], '" alt="tanding on oval"></div>',sep=""),
-    file))
+  
+  sapply( sort(unique(group)), function(c){
+    svgss<-svgs[group==c]
+    idss <- ids[group==c]
+    writeLines(paste('<div class="cluster-group"><div class="molgrid"><h1>Group: ',c,'</h1>' ,sep="") ,file)
+    d <- sapply(1:length(svgss),function(i)writeLines(paste(
+      '<div class="molbox"><h6>',idss[i],'</h6> <div class="molimg" >',svgss[i],'</div></div>',sep=""),
+      file))
+    writeLines('</div></div><br>',file)
+  })
   writeLines(tail,file)
   close(file)
   if(open){ browseURL(paste("file:///",fileName ,sep=""))}
   return(fileName)
 }
 
-# 
-# showmols.shiny<-function( ptr , data = data.frame()){
-#   require(shiny)
-#    svgs <- sapply(unlist(ptr),mol2svg) 
-#    svgs <- sapply( svgs, function(s) gsub("<svg:svg",'<svg:svg viewBox="0 0 250 230"  preserveAspectRatio="xMinYMin meet" ',s,fixed=T)) 
-#    svgs <- sapply( svgs, function(s) paste( "<div class='molma'>", 
-#                                             gsub("svg:","",s,fixed=T),
-#                                             "</div>"))
-#   #svgs <- sapply(unlist(ptr),function(s) paste( "<img src='",showmol(s,F),"' />",sep="") )
-#   server <- function(input, output) {
-#     output$genericTable <-  renderTable({
-#       if(nrow(data)==length(svgs)){
-#         cbind(data.frame(id=1:length(svgs), img=svgs),data)               
-#       }else{
-#         data.frame(id=1:length(svgs), img=svgs)
-#       }
-#     } , sanitize.text.function = function(x) x)
-#   }  
-#   ui <- shinyUI(fluidPage(
-#     tags$head(
-#       tags$style(HTML("
-#        //.molma > svg{
-#          // transform: scale(0.2, 0.2);
-#       // }
-#        #genericTable > table > tbody > tr > :first-child{
-#           display:none;
-#        }
-#     "))
-#     ),                      
-#     mainPanel(
-#     tableOutput("genericTable")
-#   )))
-#   message("Press ESC to continue.")
-#   shinyApp(ui = ui, server = server)
+# molGetProps <- function( m ){
+#   if(is.list(m)){ stop("Invalid input (needs a single molecule)")}
+#   l <- list()
+#   for( p in p_molGetPropList(m)){
+#      l[[p]]<- tryCatch( p_molGetProp(m,p), error=function(e){return (NA)})
+#   }
+#   return(l)
 # }
 
-
-
-molGetProps <- function( m ){
-  if(is.list(m)){ stop("Invalid input (needs a single molecule)")}
-  l <- list()
-  for( p in p_molGetPropList(m)){
-     l[[p]]<- tryCatch( p_molGetProp(m,p), error=function(e){return (NA)})
+#' Get Properties of molecules
+#'
+#' @param mols a list of molecules
+#' @return data.frame with properties
+molsGetProps <- function( mols ){
+  if(!is.list(mols)){ 
+    mols <- list(mols)
   }
-  return(l)
-}
-
-molsGetProps <- function( ms ){
-  if(!is.list(ms)){ stop("Invalid input (needs a list of molecules)")}
-  lprops<- lapply(ms,molGetProps)
+  
+  lprops<- lapply(mols,function( m ){
+    if(is.list(m)){ stop("Invalid input (needs a single molecule)")}
+    l <- list()
+    for( p in p_molGetPropList(m)){
+      l[[p]]<- tryCatch( p_molGetProp(m,p), error=function(e){return (NA)})
+    }
+    return(l)
+  })
   n <- sort(unique(unlist(lapply(lprops,function(l)names(l)))))
   m <- lapply(lprops,function(x) { u <- unlist(x)[n];names(u)<-n;return(u)})
   as.data.frame(do.call(rbind,m))
 }
 
-molSetProp <- function( m  ,key , value){
-  p_molSetProp(m, as.character(value), key)
-}
+# molSetProp <- function( m  ,key , value){
+#   p_molSetProp(m, as.character(value), key)
+# }
 
+#' Set Properties to Molecules
+#'
+#' @param ms A molecule or list of molecules
+#' @param key A key to be added or modified
+#' @param v A value or vector 
 molsSetProps <- function( ms, key, v  ){
+  if(!is.list(ms)){ 
+    ms <- list(ms)
+  }
+  
   for(i in 1:length(ms)){
-    molSetProp(ms[[i]],key,v[i])
+    #molSetProp(ms[[i]],key,v[i])
+    p_molSetProp(ms[[i]], as.character(v[i]), key)
   }
 }
 
-read.sdf<-function(file){
-  ms <- molSupplier(file)
-  obj<- unlist(molSupplierApply(ms,function(m)return(m)))
-  obj
+#' Read a SDF file and create molecules
+#'
+#' @param file file name
+#' @param sanitize  - if true sanitize the molecule before returning it
+#' @param removeHs  - if true remove Hs from the molecule before returning it (triggers sanitization)
+#' @param strictParsing  - if not set, the parser is more lax about correctness of the contents.
+#' @return A list of molecules
+read.sdf<-function(file,sanitize=T, removeHs=T,  strictParsing =T){
+  ms <- p_molSupplier(file,sanitize,  removeHs, strictParsing )
+  obj<- unlist(p_molSupplierApply(ms,function(m)return(m)))
+  obj  
+} 
+
+#' Write a SDF file
+#'
+#' @param file File name
+#' @param mols A list of molecules
+#' @param setForceV3000 force V3000 
+#' @examples
+#'
+#' mols <- smiles2mol(c("CC(=O)NC1=CC=C(O)C=C1","CC(=O)OC1=CC=CC=C1C(O)=O"))
+#' write.sdf("mols.sdf",mols)
+#' 
+#' compute2D(mols)
+#' write.sdf("mols.sdf",mols)
+
+write.sdf <- function(file,mols,setForceV3000=F){
+  p_writeSdf(file,mols,setForceV3000)
 }
 
-write.sdf <- function(file,mols){
-  p_writeSdf(file,mols)
+#' Computes 2D coordinates for molecules
+#'
+#' @param mols A list of molecules
+compute2D <- function(mols){
+  if(!is.list(mols)){ 
+    mols <- list(mols)
+  }
+  
+  for( i in 1:length(mols)){
+    p_molCompute2DCoords( mols[[i]])
+  }
+}
+
+#' Reads a smi file into a data.frame
+#'
+#' @param file File name
+#' @param colnames Vector with colnames
+#' @return A data frame
+read.smi <- function( file, colnames="" ){
+  df <- read.table(file,header=F, comment.char="",stringsAsFactors=F,
+             quote = "\"",
+             sep="\t" )
+  if(length(colnames)>1)
+  colnames(df)<-colnames
+  df
+}
+
+
+p_vectorize <- function( mols , foo , ... ){
+  if(is.list(mols)){
+    if( any(sapply(mols, function(m){ is.list(m)}))){
+      stop("Invalid input!")
+    }
+  }
+  sapply(mols,  foo)  
+}
+
+
+#' Map molecules to SVG
+#'
+#' @param mols A list of molecules
+#' @return A list of svg
+mol2svg <- function( mols ){
+  p_vectorize( mols,  p_mol2svg)  
+}
+
+#' Calculate molecular weight
+#'
+#' @param mols A list of molecules
+#' @return A list of molecular weights
+mol2mw <- function( mols ){
+  p_vectorize( mols,  p_mol2mw)  
+}
+
+#' Get Smiles of molecules
+#'
+#' @param mols A list of molecules
+#' @return A list of molecular weights
+mol2smiles <- function( mols ){
+  p_vectorize( mols,  p_mol2smiles)  
 }
 

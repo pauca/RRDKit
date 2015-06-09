@@ -21,40 +21,6 @@ Date: \tab 2014-11-05\cr
 License: \tab GPL-3\cr
 }
 
-# Available functions
-# Read and Write
-read.sdf( file )\cr
-write.sdf( file , mols )\cr
-
-smiles2mol( smile )\cr
-smarts2mol( smart )\cr
-
-mol2smiles( mol )\cr
-
-# Changing Properties
-molGetProps( mol )\cr
-molsGetProps( mols )\cr
-
-molSetProp( mol  ,key , value)\cr
-molsSetProp ( mols  ,key , values )\cr
-
-# molecule viewers
-showmol(mol)\cr
-showmols(mol)\cr
-showmols.grid(mols)\cr
-
-# descriptors
-mol2svg(mol) \cr
-mol2maccs(mol)\cr
-mol2morgan(mol)\cr
-mol2mw(mol)\cr
-mol2TPSA(mol)\cr
-mol2LogP(mol)\cr
-mol2murcko(mol)\cr
-computeGasteigerCharges(mol)\cr
-
-# others
-SubstructMatch(  mol , query )\cr
 
 }
 \author{
