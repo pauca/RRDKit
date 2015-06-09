@@ -5,6 +5,53 @@
 
 using namespace Rcpp;
 
+// p_mol2Inchi
+std::string p_mol2Inchi(SEXP xp);
+RcppExport SEXP RRDKit_p_mol2Inchi(SEXP xpSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
+        std::string __result = p_mol2Inchi(xp);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// p_Inchi2InchiKey
+std::string p_Inchi2InchiKey(SEXP x);
+RcppExport SEXP RRDKit_p_Inchi2InchiKey(SEXP xSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
+        std::string __result = p_Inchi2InchiKey(x);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// Inchi2Mol
+SEXP Inchi2Mol(SEXP x, bool sanitize = false, bool removeHs = false);
+RcppExport SEXP RRDKit_Inchi2Mol(SEXP xSEXP, SEXP sanitizeSEXP, SEXP removeHsSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
+        Rcpp::traits::input_parameter< bool >::type sanitize(sanitizeSEXP );
+        Rcpp::traits::input_parameter< bool >::type removeHs(removeHsSEXP );
+        SEXP __result = Inchi2Mol(x, sanitize, removeHs);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // p_smile2mol
 SEXP p_smile2mol(std::string smi, bool sanitize = true);
 RcppExport SEXP RRDKit_p_smile2mol(SEXP smiSEXP, SEXP sanitizeSEXP) {

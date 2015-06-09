@@ -13,12 +13,12 @@ basic operations from RDKit. If you are looking for a more richer tool check RDK
 
 * R Packages: Rcpp, testthat.
 
-* A RDKit installation. Preferably use RDKit version RDKit_2014_09_1. Follow the
+* A RDKit installation. Preferably use latest RDKit version. Follow the
   instuctions in [http://www.rdkit.org/docs/Install.html](http://www.rdkit.org/docs/Install.html)). Check "Building the RDKit" section. 
   
-* Note that Python wrappers can be disabled and INCHI support enabled (check RDKitInchi):
+* Note that Python wrappers can be disabled (optional) and INCHI support enabled (check RDKitInchi):
 ```
-cmake    -D RDK_BUILD_PYTHON_WRAPPERS= -D RDK_BUILD_INCHI_SUPPORT=ON ..
+cmake -D RDK_BUILD_PYTHON_WRAPPERS= -D RDK_BUILD_INCHI_SUPPORT=ON ..
                                           
 ```
 
@@ -28,7 +28,7 @@ cmake    -D RDK_BUILD_PYTHON_WRAPPERS= -D RDK_BUILD_INCHI_SUPPORT=ON ..
   
 ## Installation
 
-* Download latest RRDKit and Install:
+* with devtools
 ```
 library(devtools)
 install_github("pauca/RRDKit/RRDKit")
@@ -44,6 +44,12 @@ mols2 <- read.sdf(system.file("extdata/clozapine.sdf", package="RRDKit"))
 mols <- c(mols1,mols2)
 mol2mw(mols)
 showMols(mols)  
+
+
+inchi <- mol2Inchi(mols)  
+
+Inchi2InchiKey(inchi)
+
 ```
 
 ## Functions

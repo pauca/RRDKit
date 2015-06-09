@@ -153,14 +153,14 @@ showMolsGrid<-function( mols , group = 1, id="", open = T ,  svg.size=200){
   return(fileName)
 }
 
-# molGetProps <- function( m ){
-#   if(is.list(m)){ stop("Invalid input (needs a single molecule)")}
-#   l <- list()
-#   for( p in p_molGetPropList(m)){
-#      l[[p]]<- tryCatch( p_molGetProp(m,p), error=function(e){return (NA)})
-#   }
-#   return(l)
-# }
+molGetProps <- function( m ){
+  if(is.list(m)){ stop("Invalid input (needs a single molecule)")}
+  l <- list()
+  for( p in p_molGetPropList(m)){
+     l[[p]]<- tryCatch( p_molGetProp(m,p), error=function(e){return (NA)})
+  }
+  return(l)
+}
 
 #' Get Properties of molecules
 #'
@@ -261,15 +261,6 @@ read.smi <- function( file, colnames="" ){
   df
 }
 
-
-p_vectorize <- function( mols , foo , ... ){
-  if(is.list(mols)){
-    if( any(sapply(mols, function(m){ is.list(m)}))){
-      stop("Invalid input!")
-    }
-  }
-  sapply(mols,  foo)  
-}
 
 
 #' Map molecules to SVG

@@ -13,7 +13,17 @@
 # You should have received a copy of the GNU General Public License
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
-  
+
+p_vectorize <- function( mols , foo , ... ){
+  if(is.list(mols)){
+    if( any(sapply(mols, function(m){ is.list(m)}))){
+      stop("Invalid input!")
+    }
+  }
+  sapply(mols,  foo)  
+}
+
+
 p_molSupplierApply <- function( molSupplier, fun, ...){
   l1 <- list()
   while(!molSupplier_atEnd(molSupplier)){
@@ -47,7 +57,7 @@ getSMARTSFP <- function(  mols, smarts.mols ){
     for( j in 1:length(smarts.mols)){
       sm <- NA
       try({ 
-        sm <- substructMatch(m, smarts.mols[[j]])  
+        sm <- SubstructMatch(m, smarts.mols[[j]])  
       },silent=T)
       r[i,j] <- sm
       
