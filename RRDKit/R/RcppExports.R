@@ -127,19 +127,10 @@ p_mol2murcko <- function(xp) {
     .Call('RRDKit_p_mol2murcko', PACKAGE = 'RRDKit', xp)
 }
 
-#' Compute GasteigerCharges
-#'
-#' @param xp a molecule
-#' @return the GasteigerCharges
 p_computeGasteigerCharges <- function(xp) {
     .Call('RRDKit_p_computeGasteigerCharges', PACKAGE = 'RRDKit', xp)
 }
 
-#' Kekulize molecule
-#'
-#' @param xp a molecule
-#' @param  markAtomsBonds  markAtomsBonds
-#' @param  maxBackTracks  maxBackTracks
 p_kekulize <- function(xp, markAtomsBonds = TRUE, maxBackTracks = 100L) {
     invisible(.Call('RRDKit_p_kekulize', PACKAGE = 'RRDKit', xp, markAtomsBonds, maxBackTracks))
 }

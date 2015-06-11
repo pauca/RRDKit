@@ -115,6 +115,24 @@ is.molecule<-function(mol){
     }, error = function(e) {})    
     result
 }
+
+
+#' Check if object is a "nice" RDKit smile
+#'
+#' @param smile A smile
+is.nice.smile <-function(smile){
+  sapply( smile, function(smi){
+  # check if smile
+  result <- F    
+  tryCatch({
+    mol <- smiles2mol(smi)
+    kekulize(mol)
+    s <- smiles2mol(mol2smiles(mol))      
+    result <- T
+  }, error = function(e) {})    
+  result
+  })
+}
  
 #' unfactor
 #'

@@ -10,3 +10,5 @@ License: GPL-3
 LinkingTo: Rcpp
 Depends:R (>= 3.1.0), Rcpp (>= 0.11.1),testthat, XML
 Encoding: UTF-8
+NeedsCompilation: yes
+OS_type:unix
