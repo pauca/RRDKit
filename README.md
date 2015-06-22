@@ -1,9 +1,9 @@
-RRDKit
+rrdkit
 ======
 
 A pragmatic interface to RDKit (C++ API) in R.
 
-RRDKit package provides a pragmatic interface to some of the RDKit functions in R. It is intended to work smoothly with R. RRDKit aims to be a tool to perform
+rrdkit package provides a pragmatic interface to some of the RDKit functions in R. It is intended to work smoothly with R. rrdkit aims to be a tool to perform
 basic operations from RDKit. If you are looking for a more richer tool check RDKit web site.
 
 
@@ -31,16 +31,16 @@ cmake -D RDK_BUILD_PYTHON_WRAPPERS= -D RDK_BUILD_INCHI_SUPPORT=ON ..
 * with devtools
 ```
 library(devtools)
-install_github("pauca/RRDKit/RRDKit")
+install_github("pauca/rrdkit/rrdkit")
 ```
 
   
 ## Usage
 
 ```
-library(RRDKit)  
-mols1 <- read.sdf(system.file("extdata/aspirine.sdf", package="RRDKit"))  
-mols2 <- read.sdf(system.file("extdata/clozapine.sdf", package="RRDKit"))  
+library(rrdkit)  
+mols1 <- read.sdf(system.file("extdata/aspirine.sdf", package="rrdkit"))  
+mols2 <- read.sdf(system.file("extdata/clozapine.sdf", package="rrdkit"))  
 mols <- c(mols1,mols2)
 mol2mw(mols)
 showMols(mols)
