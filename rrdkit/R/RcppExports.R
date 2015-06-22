@@ -23,12 +23,8 @@ p_smile2mol <- function(smi, sanitize = TRUE) {
     .Call('RRDKit_p_smile2mol', PACKAGE = 'RRDKit', smi, sanitize)
 }
 
-#' map a smarts to a molecule
-#'
-#' @param smarts a smarts string
-#' @return a molecule
-smarts2mol <- function(smarts) {
-    .Call('RRDKit_smarts2mol', PACKAGE = 'RRDKit', smarts)
+p_smarts2mol <- function(smarts) {
+    .Call('RRDKit_p_smarts2mol', PACKAGE = 'RRDKit', smarts)
 }
 
 p_molIsNil <- function(xp) {

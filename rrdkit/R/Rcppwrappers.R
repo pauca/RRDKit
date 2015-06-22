@@ -11,7 +11,7 @@
 # GNU General Public License for more details.
 # 
 # You should have received a copy of the GNU General Public License
-# along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+# along with RRDKit.  If not, see <http://www.gnu.org/licenses/>.
 
 library(Rcpp) 
 
@@ -330,3 +330,11 @@ computeGasteigerCharges <- function( mols ){
 kekulize <- function( mols ){
   p_vectorize( mols,  p_kekulize)  
 } 
+
+#' map a smarts to a molecule
+#'
+#' @param smarts a smarts string
+#' @return a molecule
+smarts2mol <- function(smarts){
+  p_vectorize( smarts,  p_smarts2mol)  
+}

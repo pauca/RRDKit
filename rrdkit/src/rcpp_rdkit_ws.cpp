@@ -67,12 +67,9 @@ SEXP   p_smile2mol(std::string smi  ,  bool sanitize = true ){
   }
 }
 
-//' map a smarts to a molecule
-//'
-//' @param smarts a smarts string
-//' @return a molecule
+
 // [[Rcpp::export]] 
-SEXP   smarts2mol(std::string smarts ){
+SEXP   p_smarts2mol(std::string smarts ){
   RWMol *m = SmartsToMol( smarts );
   if(m){
     SEXP ptr =  R_MakeExternalPtr(m, R_NilValue ,R_NilValue);

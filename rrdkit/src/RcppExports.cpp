@@ -68,15 +68,15 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
-// smarts2mol
-SEXP smarts2mol(std::string smarts);
-RcppExport SEXP RRDKit_smarts2mol(SEXP smartsSEXP) {
+// p_smarts2mol
+SEXP p_smarts2mol(std::string smarts);
+RcppExport SEXP RRDKit_p_smarts2mol(SEXP smartsSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< std::string >::type smarts(smartsSEXP );
-        SEXP __result = smarts2mol(smarts);
+        SEXP __result = p_smarts2mol(smarts);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
