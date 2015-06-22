@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // p_mol2Inchi
 std::string p_mol2Inchi(SEXP xp);
-RcppExport SEXP RRDKit_p_mol2Inchi(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_p_mol2Inchi(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -22,7 +22,7 @@ END_RCPP
 }
 // p_Inchi2InchiKey
 std::string p_Inchi2InchiKey(SEXP x);
-RcppExport SEXP RRDKit_p_Inchi2InchiKey(SEXP xSEXP) {
+RcppExport SEXP rrdkit_p_Inchi2InchiKey(SEXP xSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -37,7 +37,7 @@ END_RCPP
 }
 // Inchi2Mol
 SEXP Inchi2Mol(SEXP x, bool sanitize = false, bool removeHs = false);
-RcppExport SEXP RRDKit_Inchi2Mol(SEXP xSEXP, SEXP sanitizeSEXP, SEXP removeHsSEXP) {
+RcppExport SEXP rrdkit_Inchi2Mol(SEXP xSEXP, SEXP sanitizeSEXP, SEXP removeHsSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -54,7 +54,7 @@ END_RCPP
 }
 // p_smile2mol
 SEXP p_smile2mol(std::string smi, bool sanitize = true);
-RcppExport SEXP RRDKit_p_smile2mol(SEXP smiSEXP, SEXP sanitizeSEXP) {
+RcppExport SEXP rrdkit_p_smile2mol(SEXP smiSEXP, SEXP sanitizeSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -70,7 +70,7 @@ END_RCPP
 }
 // p_smarts2mol
 SEXP p_smarts2mol(std::string smarts);
-RcppExport SEXP RRDKit_p_smarts2mol(SEXP smartsSEXP) {
+RcppExport SEXP rrdkit_p_smarts2mol(SEXP smartsSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -85,7 +85,7 @@ END_RCPP
 }
 // p_molIsNil
 bool p_molIsNil(SEXP xp);
-RcppExport SEXP RRDKit_p_molIsNil(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_p_molIsNil(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -100,7 +100,7 @@ END_RCPP
 }
 // p_mol2smiles
 std::string p_mol2smiles(SEXP xp);
-RcppExport SEXP RRDKit_p_mol2smiles(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_p_mol2smiles(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -115,7 +115,7 @@ END_RCPP
 }
 // p_mol2svg
 std::string p_mol2svg(SEXP xp);
-RcppExport SEXP RRDKit_p_mol2svg(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_p_mol2svg(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -130,7 +130,7 @@ END_RCPP
 }
 // mol2maccs
 IntegerVector mol2maccs(SEXP xp);
-RcppExport SEXP RRDKit_mol2maccs(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_mol2maccs(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -145,7 +145,7 @@ END_RCPP
 }
 // mol2morgan
 IntegerVector mol2morgan(SEXP xp, unsigned int radius = 2, unsigned int nBits = 2048, bool useFeatures = false);
-RcppExport SEXP RRDKit_mol2morgan(SEXP xpSEXP, SEXP radiusSEXP, SEXP nBitsSEXP, SEXP useFeaturesSEXP) {
+RcppExport SEXP rrdkit_mol2morgan(SEXP xpSEXP, SEXP radiusSEXP, SEXP nBitsSEXP, SEXP useFeaturesSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -163,7 +163,7 @@ END_RCPP
 }
 // p_writeSdf
 void p_writeSdf(std::string file, SEXP pv, bool setForceV3000 = false);
-RcppExport SEXP RRDKit_p_writeSdf(SEXP fileSEXP, SEXP pvSEXP, SEXP setForceV3000SEXP) {
+RcppExport SEXP rrdkit_p_writeSdf(SEXP fileSEXP, SEXP pvSEXP, SEXP setForceV3000SEXP) {
 BEGIN_RCPP
     {
         Rcpp::RNGScope __rngScope;
@@ -177,7 +177,7 @@ END_RCPP
 }
 // p_molSupplier
 SEXP p_molSupplier(std::string file, bool sanitize = true, bool removeHs = true, bool strictParsing = true);
-RcppExport SEXP RRDKit_p_molSupplier(SEXP fileSEXP, SEXP sanitizeSEXP, SEXP removeHsSEXP, SEXP strictParsingSEXP) {
+RcppExport SEXP rrdkit_p_molSupplier(SEXP fileSEXP, SEXP sanitizeSEXP, SEXP removeHsSEXP, SEXP strictParsingSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -195,7 +195,7 @@ END_RCPP
 }
 // p_molSupplier_atEnd
 bool p_molSupplier_atEnd(SEXP xp);
-RcppExport SEXP RRDKit_p_molSupplier_atEnd(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_p_molSupplier_atEnd(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -210,7 +210,7 @@ END_RCPP
 }
 // p_molSupplier_next
 SEXP p_molSupplier_next(SEXP xp);
-RcppExport SEXP RRDKit_p_molSupplier_next(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_p_molSupplier_next(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -225,7 +225,7 @@ END_RCPP
 }
 // p_molSupplier_reset
 void p_molSupplier_reset(SEXP xp);
-RcppExport SEXP RRDKit_p_molSupplier_reset(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_p_molSupplier_reset(SEXP xpSEXP) {
 BEGIN_RCPP
     {
         Rcpp::RNGScope __rngScope;
@@ -237,7 +237,7 @@ END_RCPP
 }
 // p_molGetPropList
 std::vector<std::string> p_molGetPropList(SEXP xp);
-RcppExport SEXP RRDKit_p_molGetPropList(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_p_molGetPropList(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -252,7 +252,7 @@ END_RCPP
 }
 // p_molGetProp
 std::string p_molGetProp(SEXP xp, SEXP property);
-RcppExport SEXP RRDKit_p_molGetProp(SEXP xpSEXP, SEXP propertySEXP) {
+RcppExport SEXP rrdkit_p_molGetProp(SEXP xpSEXP, SEXP propertySEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -268,7 +268,7 @@ END_RCPP
 }
 // p_molSetProp
 void p_molSetProp(SEXP xp, SEXP property, SEXP key);
-RcppExport SEXP RRDKit_p_molSetProp(SEXP xpSEXP, SEXP propertySEXP, SEXP keySEXP) {
+RcppExport SEXP rrdkit_p_molSetProp(SEXP xpSEXP, SEXP propertySEXP, SEXP keySEXP) {
 BEGIN_RCPP
     {
         Rcpp::RNGScope __rngScope;
@@ -282,7 +282,7 @@ END_RCPP
 }
 // fragmentOnBRICSBonds
 SEXP fragmentOnBRICSBonds(SEXP xp);
-RcppExport SEXP RRDKit_fragmentOnBRICSBonds(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_fragmentOnBRICSBonds(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -297,7 +297,7 @@ END_RCPP
 }
 // SubstructMatch
 bool SubstructMatch(SEXP xp_mol, SEXP xp_query);
-RcppExport SEXP RRDKit_SubstructMatch(SEXP xp_molSEXP, SEXP xp_querySEXP) {
+RcppExport SEXP rrdkit_SubstructMatch(SEXP xp_molSEXP, SEXP xp_querySEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -313,7 +313,7 @@ END_RCPP
 }
 // p_mol2mw
 double p_mol2mw(SEXP xp);
-RcppExport SEXP RRDKit_p_mol2mw(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_p_mol2mw(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -328,7 +328,7 @@ END_RCPP
 }
 // p_mol2TPSA
 double p_mol2TPSA(SEXP xp);
-RcppExport SEXP RRDKit_p_mol2TPSA(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_p_mol2TPSA(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -343,7 +343,7 @@ END_RCPP
 }
 // p_mol2LogP
 double p_mol2LogP(SEXP xp);
-RcppExport SEXP RRDKit_p_mol2LogP(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_p_mol2LogP(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -358,7 +358,7 @@ END_RCPP
 }
 // p_mol2murcko
 std::string p_mol2murcko(SEXP xp);
-RcppExport SEXP RRDKit_p_mol2murcko(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_p_mol2murcko(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -373,7 +373,7 @@ END_RCPP
 }
 // p_computeGasteigerCharges
 std::vector< double > p_computeGasteigerCharges(SEXP xp);
-RcppExport SEXP RRDKit_p_computeGasteigerCharges(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_p_computeGasteigerCharges(SEXP xpSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -388,7 +388,7 @@ END_RCPP
 }
 // p_kekulize
 void p_kekulize(SEXP xp, bool markAtomsBonds = true, unsigned int maxBackTracks = 100);
-RcppExport SEXP RRDKit_p_kekulize(SEXP xpSEXP, SEXP markAtomsBondsSEXP, SEXP maxBackTracksSEXP) {
+RcppExport SEXP rrdkit_p_kekulize(SEXP xpSEXP, SEXP markAtomsBondsSEXP, SEXP maxBackTracksSEXP) {
 BEGIN_RCPP
     {
         Rcpp::RNGScope __rngScope;
@@ -402,7 +402,7 @@ END_RCPP
 }
 // p_molCompute2DCoords
 void p_molCompute2DCoords(SEXP xp);
-RcppExport SEXP RRDKit_p_molCompute2DCoords(SEXP xpSEXP) {
+RcppExport SEXP rrdkit_p_molCompute2DCoords(SEXP xpSEXP) {
 BEGIN_RCPP
     {
         Rcpp::RNGScope __rngScope;

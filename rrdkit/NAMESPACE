@@ -1,4 +1,4 @@
-useDynLib(RRDKit)
+useDynLib(rrdkit)
 #exportPattern("^[[:alpha:]]+")
 exportPattern("^[^p]")
 
