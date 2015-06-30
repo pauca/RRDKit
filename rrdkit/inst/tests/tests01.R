@@ -1,6 +1,6 @@
 library(Rcpp)
 library(testthat)
-library(RRDKit)
+library(rrdkit)
 context("smiles conversions and operations")
 
 test_that("Smiles to mol", {
@@ -26,8 +26,8 @@ test_that("SVG functions", {
 
 context("Inchi functions")
 test_that("Inchi to mol and operations", {
-  mol1 <- read.sdf(system.file("extdata/aspirine.sdf", package="RRDKit"))
-  mol2 <- read.sdf(system.file("extdata/clozapine.sdf", package="RRDKit"))
+  mol1 <- read.sdf(system.file("extdata/aspirine.sdf", package="rrdkit"))
+  mol2 <- read.sdf(system.file("extdata/clozapine.sdf", package="rrdkit"))
   expect_that(  mol2Inchi(mol1)  , equals("InChI=1S/C9H8O4/c1-6(10)13-8-5-3-2-4-7(8)9(11)12/h2-5H,1H3,(H,11,12)"))
   expect_that(  mol2Inchi(c(mol1,mol2))[[1]]  , equals("InChI=1S/C9H8O4/c1-6(10)13-8-5-3-2-4-7(8)9(11)12/h2-5H,1H3,(H,11,12)"))
   expect_that(  mol2InchiKey(c(mol1,mol2))[[1]], equals("BSYNRYMUTXBXSQ-UHFFFAOYSA-N"))
