@@ -9,7 +9,7 @@ basic operations from RDKit. If you are looking for a more richer tool check RDK
 
 ## Prerequisites
 
-* R >= 3.1.0
+* R >= 3.2.0
 
 * R Packages: Rcpp, testthat, XML.
 

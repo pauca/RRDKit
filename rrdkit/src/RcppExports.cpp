@@ -9,229 +9,173 @@ using namespace Rcpp;
 std::string p_mol2Inchi(SEXP xp);
 RcppExport SEXP rrdkit_p_mol2Inchi(SEXP xpSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        std::string __result = p_mol2Inchi(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_mol2Inchi(xp));
+    return __result;
 END_RCPP
 }
 // p_Inchi2InchiKey
 std::string p_Inchi2InchiKey(SEXP x);
 RcppExport SEXP rrdkit_p_Inchi2InchiKey(SEXP xSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
-        std::string __result = p_Inchi2InchiKey(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    __result = Rcpp::wrap(p_Inchi2InchiKey(x));
+    return __result;
 END_RCPP
 }
 // Inchi2Mol
-SEXP Inchi2Mol(SEXP x, bool sanitize = false, bool removeHs = false);
+SEXP Inchi2Mol(SEXP x, bool sanitize, bool removeHs);
 RcppExport SEXP rrdkit_Inchi2Mol(SEXP xSEXP, SEXP sanitizeSEXP, SEXP removeHsSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
-        Rcpp::traits::input_parameter< bool >::type sanitize(sanitizeSEXP );
-        Rcpp::traits::input_parameter< bool >::type removeHs(removeHsSEXP );
-        SEXP __result = Inchi2Mol(x, sanitize, removeHs);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< bool >::type sanitize(sanitizeSEXP);
+    Rcpp::traits::input_parameter< bool >::type removeHs(removeHsSEXP);
+    __result = Rcpp::wrap(Inchi2Mol(x, sanitize, removeHs));
+    return __result;
 END_RCPP
 }
 // p_smile2mol
-SEXP p_smile2mol(std::string smi, bool sanitize = true);
+SEXP p_smile2mol(std::string smi, bool sanitize);
 RcppExport SEXP rrdkit_p_smile2mol(SEXP smiSEXP, SEXP sanitizeSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< std::string >::type smi(smiSEXP );
-        Rcpp::traits::input_parameter< bool >::type sanitize(sanitizeSEXP );
-        SEXP __result = p_smile2mol(smi, sanitize);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< std::string >::type smi(smiSEXP);
+    Rcpp::traits::input_parameter< bool >::type sanitize(sanitizeSEXP);
+    __result = Rcpp::wrap(p_smile2mol(smi, sanitize));
+    return __result;
 END_RCPP
 }
 // p_smarts2mol
 SEXP p_smarts2mol(std::string smarts);
 RcppExport SEXP rrdkit_p_smarts2mol(SEXP smartsSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< std::string >::type smarts(smartsSEXP );
-        SEXP __result = p_smarts2mol(smarts);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< std::string >::type smarts(smartsSEXP);
+    __result = Rcpp::wrap(p_smarts2mol(smarts));
+    return __result;
 END_RCPP
 }
 // p_molIsNil
 bool p_molIsNil(SEXP xp);
 RcppExport SEXP rrdkit_p_molIsNil(SEXP xpSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        bool __result = p_molIsNil(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_molIsNil(xp));
+    return __result;
 END_RCPP
 }
 // p_mol2smiles
 std::string p_mol2smiles(SEXP xp);
 RcppExport SEXP rrdkit_p_mol2smiles(SEXP xpSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        std::string __result = p_mol2smiles(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_mol2smiles(xp));
+    return __result;
 END_RCPP
 }
 // p_mol2svg
 std::string p_mol2svg(SEXP xp);
 RcppExport SEXP rrdkit_p_mol2svg(SEXP xpSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        std::string __result = p_mol2svg(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_mol2svg(xp));
+    return __result;
 END_RCPP
 }
 // mol2maccs
 IntegerVector mol2maccs(SEXP xp);
 RcppExport SEXP rrdkit_mol2maccs(SEXP xpSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        IntegerVector __result = mol2maccs(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(mol2maccs(xp));
+    return __result;
 END_RCPP
 }
 // mol2morgan
-IntegerVector mol2morgan(SEXP xp, unsigned int radius = 2, unsigned int nBits = 2048, bool useFeatures = false);
+IntegerVector mol2morgan(SEXP xp, unsigned int radius, unsigned int nBits, bool useFeatures);
 RcppExport SEXP rrdkit_mol2morgan(SEXP xpSEXP, SEXP radiusSEXP, SEXP nBitsSEXP, SEXP useFeaturesSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        Rcpp::traits::input_parameter< unsigned int >::type radius(radiusSEXP );
-        Rcpp::traits::input_parameter< unsigned int >::type nBits(nBitsSEXP );
-        Rcpp::traits::input_parameter< bool >::type useFeatures(useFeaturesSEXP );
-        IntegerVector __result = mol2morgan(xp, radius, nBits, useFeatures);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    Rcpp::traits::input_parameter< unsigned int >::type radius(radiusSEXP);
+    Rcpp::traits::input_parameter< unsigned int >::type nBits(nBitsSEXP);
+    Rcpp::traits::input_parameter< bool >::type useFeatures(useFeaturesSEXP);
+    __result = Rcpp::wrap(mol2morgan(xp, radius, nBits, useFeatures));
+    return __result;
 END_RCPP
 }
 // p_writeSdf
-void p_writeSdf(std::string file, SEXP pv, bool setForceV3000 = false);
+void p_writeSdf(std::string file, SEXP pv, bool setForceV3000);
 RcppExport SEXP rrdkit_p_writeSdf(SEXP fileSEXP, SEXP pvSEXP, SEXP setForceV3000SEXP) {
 BEGIN_RCPP
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< std::string >::type file(fileSEXP );
-        Rcpp::traits::input_parameter< SEXP >::type pv(pvSEXP );
-        Rcpp::traits::input_parameter< bool >::type setForceV3000(setForceV3000SEXP );
-        p_writeSdf(file, pv, setForceV3000);
-    }
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< std::string >::type file(fileSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type pv(pvSEXP);
+    Rcpp::traits::input_parameter< bool >::type setForceV3000(setForceV3000SEXP);
+    p_writeSdf(file, pv, setForceV3000);
     return R_NilValue;
 END_RCPP
 }
 // p_molSupplier
-SEXP p_molSupplier(std::string file, bool sanitize = true, bool removeHs = true, bool strictParsing = true);
+SEXP p_molSupplier(std::string file, bool sanitize, bool removeHs, bool strictParsing);
 RcppExport SEXP rrdkit_p_molSupplier(SEXP fileSEXP, SEXP sanitizeSEXP, SEXP removeHsSEXP, SEXP strictParsingSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< std::string >::type file(fileSEXP );
-        Rcpp::traits::input_parameter< bool >::type sanitize(sanitizeSEXP );
-        Rcpp::traits::input_parameter< bool >::type removeHs(removeHsSEXP );
-        Rcpp::traits::input_parameter< bool >::type strictParsing(strictParsingSEXP );
-        SEXP __result = p_molSupplier(file, sanitize, removeHs, strictParsing);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< std::string >::type file(fileSEXP);
+    Rcpp::traits::input_parameter< bool >::type sanitize(sanitizeSEXP);
+    Rcpp::traits::input_parameter< bool >::type removeHs(removeHsSEXP);
+    Rcpp::traits::input_parameter< bool >::type strictParsing(strictParsingSEXP);
+    __result = Rcpp::wrap(p_molSupplier(file, sanitize, removeHs, strictParsing));
+    return __result;
 END_RCPP
 }
 // p_molSupplier_atEnd
 bool p_molSupplier_atEnd(SEXP xp);
 RcppExport SEXP rrdkit_p_molSupplier_atEnd(SEXP xpSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        bool __result = p_molSupplier_atEnd(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_molSupplier_atEnd(xp));
+    return __result;
 END_RCPP
 }
 // p_molSupplier_next
 SEXP p_molSupplier_next(SEXP xp);
 RcppExport SEXP rrdkit_p_molSupplier_next(SEXP xpSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        SEXP __result = p_molSupplier_next(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_molSupplier_next(xp));
+    return __result;
 END_RCPP
 }
 // p_molSupplier_reset
 void p_molSupplier_reset(SEXP xp);
 RcppExport SEXP rrdkit_p_molSupplier_reset(SEXP xpSEXP) {
 BEGIN_RCPP
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        p_molSupplier_reset(xp);
-    }
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    p_molSupplier_reset(xp);
     return R_NilValue;
 END_RCPP
 }
@@ -239,44 +183,34 @@ END_RCPP
 std::vector<std::string> p_molGetPropList(SEXP xp);
 RcppExport SEXP rrdkit_p_molGetPropList(SEXP xpSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        std::vector<std::string> __result = p_molGetPropList(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_molGetPropList(xp));
+    return __result;
 END_RCPP
 }
 // p_molGetProp
 std::string p_molGetProp(SEXP xp, SEXP property);
 RcppExport SEXP rrdkit_p_molGetProp(SEXP xpSEXP, SEXP propertySEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        Rcpp::traits::input_parameter< SEXP >::type property(propertySEXP );
-        std::string __result = p_molGetProp(xp, property);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type property(propertySEXP);
+    __result = Rcpp::wrap(p_molGetProp(xp, property));
+    return __result;
 END_RCPP
 }
 // p_molSetProp
 void p_molSetProp(SEXP xp, SEXP property, SEXP key);
 RcppExport SEXP rrdkit_p_molSetProp(SEXP xpSEXP, SEXP propertySEXP, SEXP keySEXP) {
 BEGIN_RCPP
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        Rcpp::traits::input_parameter< SEXP >::type property(propertySEXP );
-        Rcpp::traits::input_parameter< SEXP >::type key(keySEXP );
-        p_molSetProp(xp, property, key);
-    }
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type property(propertySEXP);
+    Rcpp::traits::input_parameter< SEXP >::type key(keySEXP);
+    p_molSetProp(xp, property, key);
     return R_NilValue;
 END_RCPP
 }
@@ -284,119 +218,89 @@ END_RCPP
 SEXP fragmentOnBRICSBonds(SEXP xp);
 RcppExport SEXP rrdkit_fragmentOnBRICSBonds(SEXP xpSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        SEXP __result = fragmentOnBRICSBonds(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(fragmentOnBRICSBonds(xp));
+    return __result;
 END_RCPP
 }
 // SubstructMatch
 bool SubstructMatch(SEXP xp_mol, SEXP xp_query);
 RcppExport SEXP rrdkit_SubstructMatch(SEXP xp_molSEXP, SEXP xp_querySEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp_mol(xp_molSEXP );
-        Rcpp::traits::input_parameter< SEXP >::type xp_query(xp_querySEXP );
-        bool __result = SubstructMatch(xp_mol, xp_query);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp_mol(xp_molSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type xp_query(xp_querySEXP);
+    __result = Rcpp::wrap(SubstructMatch(xp_mol, xp_query));
+    return __result;
 END_RCPP
 }
 // p_mol2mw
 double p_mol2mw(SEXP xp);
 RcppExport SEXP rrdkit_p_mol2mw(SEXP xpSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        double __result = p_mol2mw(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_mol2mw(xp));
+    return __result;
 END_RCPP
 }
 // p_mol2TPSA
 double p_mol2TPSA(SEXP xp);
 RcppExport SEXP rrdkit_p_mol2TPSA(SEXP xpSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        double __result = p_mol2TPSA(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_mol2TPSA(xp));
+    return __result;
 END_RCPP
 }
 // p_mol2LogP
 double p_mol2LogP(SEXP xp);
 RcppExport SEXP rrdkit_p_mol2LogP(SEXP xpSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        double __result = p_mol2LogP(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_mol2LogP(xp));
+    return __result;
 END_RCPP
 }
 // p_mol2murcko
 std::string p_mol2murcko(SEXP xp);
 RcppExport SEXP rrdkit_p_mol2murcko(SEXP xpSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        std::string __result = p_mol2murcko(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_mol2murcko(xp));
+    return __result;
 END_RCPP
 }
 // p_computeGasteigerCharges
 std::vector< double > p_computeGasteigerCharges(SEXP xp);
 RcppExport SEXP rrdkit_p_computeGasteigerCharges(SEXP xpSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        std::vector< double > __result = p_computeGasteigerCharges(xp);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_computeGasteigerCharges(xp));
+    return __result;
 END_RCPP
 }
 // p_kekulize
-void p_kekulize(SEXP xp, bool markAtomsBonds = true, unsigned int maxBackTracks = 100);
+void p_kekulize(SEXP xp, bool markAtomsBonds, unsigned int maxBackTracks);
 RcppExport SEXP rrdkit_p_kekulize(SEXP xpSEXP, SEXP markAtomsBondsSEXP, SEXP maxBackTracksSEXP) {
 BEGIN_RCPP
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        Rcpp::traits::input_parameter< bool >::type markAtomsBonds(markAtomsBondsSEXP );
-        Rcpp::traits::input_parameter< unsigned int >::type maxBackTracks(maxBackTracksSEXP );
-        p_kekulize(xp, markAtomsBonds, maxBackTracks);
-    }
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    Rcpp::traits::input_parameter< bool >::type markAtomsBonds(markAtomsBondsSEXP);
+    Rcpp::traits::input_parameter< unsigned int >::type maxBackTracks(maxBackTracksSEXP);
+    p_kekulize(xp, markAtomsBonds, maxBackTracks);
     return R_NilValue;
 END_RCPP
 }
@@ -404,11 +308,9 @@ END_RCPP
 void p_molCompute2DCoords(SEXP xp);
 RcppExport SEXP rrdkit_p_molCompute2DCoords(SEXP xpSEXP) {
 BEGIN_RCPP
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP );
-        p_molCompute2DCoords(xp);
-    }
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    p_molCompute2DCoords(xp);
     return R_NilValue;
 END_RCPP
 }
