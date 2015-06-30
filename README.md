@@ -24,7 +24,7 @@ cmake -D RDK_BUILD_PYTHON_WRAPPERS= -D RDK_BUILD_INCHI_SUPPORT=ON ..
 
 * RDBASE (the root directory of the RDKit distribution  e.g. ~/RDKit  ) configured. 
   
-* LD_LIBRARY_PATH must include $RDBASE/lib.
+* LD_LIBRARY_PATH must include $RDBASE/build/lib.
   
 ## Installation
 
