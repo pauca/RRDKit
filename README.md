@@ -1,7 +1,7 @@
 rrdkit
 ======
 
-A pragmatic interface to RDKit (C++ API) in R.
+A pragmatic interface to RDKit (C++ API) from R.
 
 rrdkit package provides a pragmatic interface to some of the RDKit functions in R. It is intended to work smoothly with R. rrdkit aims to be a tool to perform
 basic operations from RDKit. If you are looking for a more richer tool check RDKit web site.
@@ -16,7 +16,7 @@ basic operations from RDKit. If you are looking for a more richer tool check RDK
 * A RDKit installation. Preferably use latest RDKit version. Follow the
   instuctions in [http://www.rdkit.org/docs/Install.html](http://www.rdkit.org/docs/Install.html)). Check "Building the RDKit" section. 
   
-* Note that Python wrappers can be disabled (optional) and INCHI support is enabled:
+* Note that Python wrappers can be disabled (optional) and INCHI support must be enabled:
 ```
 cmake -D RDK_BUILD_PYTHON_WRAPPERS= -D RDK_BUILD_INCHI_SUPPORT=ON ..
                                           
@@ -35,7 +35,7 @@ install_github("pauca/rrdkit/rrdkit")
 ```
 
   
-## Usage
+## Examples of usage
 
 ```
 library(rrdkit)  
@@ -69,14 +69,12 @@ mol2smiles( mol )
 ### Changing Properties
 ```
 molsGetProps( mols )  
-
 molsSetProp ( mols  ,key , values )  
 ```
 ### Molecule viewers 
 
 Next functions open a browser with a 2D representation of the molecules.
 ```
-
 showMols(mols)  
 showMolsGrid(mols)  
 mol2svg(mols)  

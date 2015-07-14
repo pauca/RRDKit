@@ -1,4 +1,4 @@
 library(testthat)
-library(RRDKit)
+library(rrdkit)
 
-test_package("RRDKit")
+test_package("rrdkit")
