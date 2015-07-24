@@ -169,3 +169,4 @@ unfactorn <- function (f)
 {
   unfactor(f, "n")
 }
+

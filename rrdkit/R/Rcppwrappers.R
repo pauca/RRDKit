@@ -198,14 +198,22 @@ molsGetProps <- function( mols ){
 #' @param ms A molecule or list of molecules
 #' @param key A key to be added or modified
 #' @param v A value or vector 
-molsSetProps <- function( ms, key, v  ){
+#' @param df A dataframe with columns to be included in the sdf
+molsSetProps <- function( ms, key=NULL, v=NULL ,df=NULL  ){
   if(!is.list(ms)){ 
     ms <- list(ms)
   }
   
-  for(i in 1:length(ms)){
-    #molSetProp(ms[[i]],key,v[i])
-    p_molSetProp(ms[[i]], as.character(v[i]), key)
+  if(!is.null(df)){
+    for(col in colnames(df)){
+      molsSetProps( ms, key=col, v=df[,col])
+    }
+    
+  }else{
+    for(i in 1:length(ms)){
+      #molSetProp(ms[[i]],key,v[i])
+      p_molSetProp(ms[[i]], as.character(v[i]), key)
+    }
   }
 }
 
