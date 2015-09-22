@@ -78,7 +78,7 @@ Next functions open a browser with a 2D representation of the molecules.
 showMols(mols)  
 showMolsGrid(mols)  
 mol2svg(mols)  
-molCompute2DCoords(mols)
+compute2D(mols)
 ```
 ### Descriptors
 ```
