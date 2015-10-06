@@ -27,7 +27,11 @@ library(Rcpp)
 smiles2mol <- function( smi  ,  sanitize = TRUE , silent=FALSE){
   sapply( smi , function(s){
     r <- NA
-    try ({ r <- p_smile2mol(s,sanitize)}, silent=silent)
+    if(silent){
+      try ({ r <- p_smile2mol(s,sanitize)}, silent=silent)
+    }else{
+      r <- p_smile2mol(s,sanitize)
+    }
     r
   })
 }
@@ -375,7 +379,17 @@ kekulize <- function( mols ){
 #' map a smarts to a molecule
 #'
 #' @param smarts a smarts string
+#' @param silent if true ignore errors
 #' @return a molecule
-smarts2mol <- function(smarts){
-  p_vectorize( smarts,  p_smarts2mol)  
+smarts2mol <- function(smarts,silent=FALSE){
+   
+  sapply( smarts , function(s){
+    r <- NA
+    if(silent){
+      try ({ r <- p_smarts2mol(s )}, silent=silent)
+    }else{
+      r <- p_smarts2mol(s )
+    }
+    r
+  })
 }

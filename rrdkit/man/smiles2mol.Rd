@@ -4,12 +4,14 @@
 \alias{smiles2mol}
 \title{Convert smiles to molecules}
 \usage{
-smiles2mol(smi, sanitize = TRUE)
+smiles2mol(smi, sanitize = TRUE, silent = FALSE)
 }
 \arguments{
 \item{smi}{a smile string or vector of strings}
 
 \item{sanitize}{toggles H removal and sanitization of the molecule}
+
+\item{silent}{if true errors are hidden and NA returned for the particular molecule}
 }
 \value{
 List of molecules

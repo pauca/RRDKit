@@ -4,7 +4,7 @@
 \alias{molsSetProps}
 \title{Set Properties to Molecules}
 \usage{
-molsSetProps(ms, key, v)
+molsSetProps(ms, key = NULL, v = NULL, df = NULL)
 }
 \arguments{
 \item{ms}{A molecule or list of molecules}
@@ -12,6 +12,8 @@ molsSetProps(ms, key, v)
 \item{key}{A key to be added or modified}
 
 \item{v}{A value or vector}
+
+\item{df}{A dataframe with columns to be included in the sdf}
 }
 \description{
 Set Properties to Molecules

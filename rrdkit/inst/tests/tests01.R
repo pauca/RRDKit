@@ -9,6 +9,8 @@ test_that("Smiles to mol", {
   expect_that( mol2smiles(smiles2mol("Cl.c1ccccc1"))[[1]] , equals("Cl.c1ccccc1"))
   expect_that( smiles2mol("C1") , throws_error())
   expect_that( smiles2mol("XYZ") , throws_error())
+  expect_that( smiles2mol("C1",silent=TRUE)[["C1"]] , equals(NA))
+  expect_that( smiles2mol("XYZ",silent=TRUE)[["XYZ"]], equals(NA))
 })
 
 
