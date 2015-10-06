@@ -19,12 +19,17 @@ library(Rcpp)
 #'
 #' @param smi a smile string or vector of strings
 #' @param sanitize toggles H removal and sanitization of the molecule
+#' @param silent if true errors are hidden and NA returned for the particular molecule
 #' @return List of molecules
 #' @examples
 #' mol <- smiles2mol("c1ccccc1")
 #' mols <- smiles2mol(c("c1ccccc1","CC(=O)OC1=CC=CC=C1C(O)=O"))
-smiles2mol <- function( smi  ,  sanitize = TRUE ){
-  sapply(smi,p_smile2mol,sanitize )
+smiles2mol <- function( smi  ,  sanitize = TRUE , silent=FALSE){
+  sapply( smi , function(s){
+    r <- NA
+    try ({ r <- p_smile2mol(s,sanitize)}, silent=silent)
+    r
+  })
 }
 
 # showmol<-function( ptr , open = T ){
