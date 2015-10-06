@@ -354,6 +354,29 @@ double p_mol2TPSA(  SEXP xp ){
 
 
 // [[Rcpp::export]]
+double p_mol2NumRotatableBonds(  SEXP xp ){    
+    RWMol * mol =  p_getMol(xp);        
+    return  Descriptors::calcNumRotatableBonds( *mol  );
+}
+
+
+// [[Rcpp::export]]
+double p_mol2NumHBA(  SEXP xp ){    
+    RWMol * mol =  p_getMol(xp);        
+    return  Descriptors::calcNumHBA( *mol  );
+}
+
+
+// [[Rcpp::export]]
+double p_mol2NumHBD(  SEXP xp ){    
+    RWMol * mol =  p_getMol(xp);        
+    return  Descriptors::calcNumHBD( *mol  );
+}
+
+
+
+
+// [[Rcpp::export]]
 double p_mol2LogP(  SEXP xp ){    
     RWMol * mol =  p_getMol(xp);    
     double logp=0 ;

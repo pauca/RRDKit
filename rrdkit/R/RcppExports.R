@@ -115,6 +115,18 @@ p_mol2TPSA <- function(xp) {
     .Call('rrdkit_p_mol2TPSA', PACKAGE = 'rrdkit', xp)
 }
 
+p_mol2NumRotatableBonds <- function(xp) {
+    .Call('rrdkit_p_mol2NumRotatableBonds', PACKAGE = 'rrdkit', xp)
+}
+
+p_mol2NumHBA <- function(xp) {
+    .Call('rrdkit_p_mol2NumHBA', PACKAGE = 'rrdkit', xp)
+}
+
+p_mol2NumHBD <- function(xp) {
+    .Call('rrdkit_p_mol2NumHBD', PACKAGE = 'rrdkit', xp)
+}
+
 p_mol2LogP <- function(xp) {
     .Call('rrdkit_p_mol2LogP', PACKAGE = 'rrdkit', xp)
 }

@@ -315,6 +315,34 @@ mol2LogP <- function( mols ){
   p_vectorize( mols,  p_mol2LogP)  
 } 
 
+#' Calculate CalcNumRotatableBonds
+#'
+#' @param mols A list of molecules
+#' @return  NumRotatableBonds
+mol2NumRotableBonds <- function( mols ){
+  p_vectorize( mols,  p_mol2NumRotatableBonds)  
+} 
+
+#' Calculate CalcNum Hidrogen bond acceptors
+#'
+#' @param mols A list of molecules
+#' @return  NumRotatableBonds
+mol2NumHBA <- function( mols ){
+  p_vectorize( mols,  p_mol2NumHBA)  
+} 
+
+
+#' Calculate CalcNum Hidrogen bond acceptors
+#'
+#' @param mols A list of molecules
+#' @return  NumRotatableBonds
+mol2NumHBD <- function( mols ){
+  p_vectorize( mols,  p_mol2NumHBD)  
+} 
+
+
+
+
 #' Calculate murcko scaffold
 #'
 #' @param mols A list of molecules

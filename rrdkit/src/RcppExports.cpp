@@ -259,6 +259,39 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// p_mol2NumRotatableBonds
+double p_mol2NumRotatableBonds(SEXP xp);
+RcppExport SEXP rrdkit_p_mol2NumRotatableBonds(SEXP xpSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_mol2NumRotatableBonds(xp));
+    return __result;
+END_RCPP
+}
+// p_mol2NumHBA
+double p_mol2NumHBA(SEXP xp);
+RcppExport SEXP rrdkit_p_mol2NumHBA(SEXP xpSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_mol2NumHBA(xp));
+    return __result;
+END_RCPP
+}
+// p_mol2NumHBD
+double p_mol2NumHBD(SEXP xp);
+RcppExport SEXP rrdkit_p_mol2NumHBD(SEXP xpSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type xp(xpSEXP);
+    __result = Rcpp::wrap(p_mol2NumHBD(xp));
+    return __result;
+END_RCPP
+}
 // p_mol2LogP
 double p_mol2LogP(SEXP xp);
 RcppExport SEXP rrdkit_p_mol2LogP(SEXP xpSEXP) {
