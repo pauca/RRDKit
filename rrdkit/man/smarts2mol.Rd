@@ -4,10 +4,12 @@
 \alias{smarts2mol}
 \title{map a smarts to a molecule}
 \usage{
-smarts2mol(smarts)
+smarts2mol(smarts, silent = FALSE)
 }
 \arguments{
 \item{smarts}{a smarts string}
+
+\item{silent}{if true ignore errors}
 }
 \value{
 a molecule

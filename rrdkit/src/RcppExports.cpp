@@ -225,15 +225,15 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
-// SubstructMatch
-bool SubstructMatch(SEXP xp_mol, SEXP xp_query);
-RcppExport SEXP rrdkit_SubstructMatch(SEXP xp_molSEXP, SEXP xp_querySEXP) {
+// p_SubstructMatch
+bool p_SubstructMatch(SEXP xp_mol, SEXP xp_query);
+RcppExport SEXP rrdkit_p_SubstructMatch(SEXP xp_molSEXP, SEXP xp_querySEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< SEXP >::type xp_mol(xp_molSEXP);
     Rcpp::traits::input_parameter< SEXP >::type xp_query(xp_querySEXP);
-    __result = Rcpp::wrap(SubstructMatch(xp_mol, xp_query));
+    __result = Rcpp::wrap(p_SubstructMatch(xp_mol, xp_query));
     return __result;
 END_RCPP
 }

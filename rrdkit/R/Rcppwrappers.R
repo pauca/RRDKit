@@ -393,3 +393,16 @@ smarts2mol <- function(smarts,silent=FALSE){
     r
   })
 }
+
+
+#' p_SubstructMatch
+#'
+#' @param mol a molecule
+#' @param query a template molecule (from a smart)
+#' @return bool
+# [[Rcpp::export]]
+SubstructMatch<-function(  mol , query  ){    
+  if(class(mol) !=  "externalptr" )   stop("Invalid molecule")
+  if(class(query) !=  "externalptr" ) stop("Invalid query molecule")
+  return ( p_SubstructMatch(mol, query))
+} 

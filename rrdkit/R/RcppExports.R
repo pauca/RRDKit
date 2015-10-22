@@ -98,13 +98,13 @@ fragmentOnBRICSBonds <- function(xp) {
     .Call('rrdkit_fragmentOnBRICSBonds', PACKAGE = 'rrdkit', xp)
 }
 
-#' SubstructMatch
+#' p_SubstructMatch
 #'
 #' @param xp_mol a molecule
 #' @param xp_query a template molecule (from a smart)
 #' @return bool
-SubstructMatch <- function(xp_mol, xp_query) {
-    .Call('rrdkit_SubstructMatch', PACKAGE = 'rrdkit', xp_mol, xp_query)
+p_SubstructMatch <- function(xp_mol, xp_query) {
+    .Call('rrdkit_p_SubstructMatch', PACKAGE = 'rrdkit', xp_mol, xp_query)
 }
 
 p_mol2mw <- function(xp) {

@@ -39,3 +39,11 @@ test_that("Inchi to mol and operations", {
   expect_that( compareInchiKeys( inchikeys[1] ,inchikeys[2],check.protonation = TRUE), equals(FALSE))
   expect_that( compareInchiKeys( inchikeys[1] ,inchikeys[1],check.protonation = TRUE), equals(TRUE))
 })
+
+
+context("match functions")
+test_that("substructure match functions", {
+  expect_that( SubstructMatch (
+                smiles2mol("C")[[1]],
+                smarts2mol("[SX2]1[CX3](=[OX1])[NX3H][CX3](=[OX1])[CX4]1")[[1]]), equals(FALSE))  
+})

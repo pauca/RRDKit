@@ -326,13 +326,13 @@ SEXP fragmentOnBRICSBonds(  SEXP xp ){
     return (ptr);
 } 
 
-//' SubstructMatch
+//' p_SubstructMatch
 //'
 //' @param xp_mol a molecule
 //' @param xp_query a template molecule (from a smart)
 //' @return bool
 // [[Rcpp::export]]
-bool SubstructMatch(  SEXP xp_mol , SEXP xp_query  ){    
+bool p_SubstructMatch(  SEXP xp_mol , SEXP xp_query  ){    
     MatchVectType match;
     ROMol *mol  =(ROMol*)(R_ExternalPtrAddr(xp_mol));
     ROMol *query=(ROMol*)(R_ExternalPtrAddr(xp_query));
