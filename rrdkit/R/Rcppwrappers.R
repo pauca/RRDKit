@@ -163,6 +163,84 @@ showMolsGrid<-function( mols , group = 1, id="", open = T ,  svg.size=200){
   return(fileName)
 }
 
+
+#' Show molecules as 2D with df in browser
+#'
+#' @param mols a list of molecules
+#' @param open if TRUE show output in browser
+#' @param group groups of molecules
+#' @param id property id that should be used for naming molecules
+#' @param svg.size  size of pictures
+#' @return Path to temporary generated html file
+#' @examples
+#'
+#' mols <- smiles2mol(c("CC(=O)NC1=CC=C(O)C=C1","CC(=O)OC1=CC=CC=C1C(O)=O"))
+#' df <- data.frame(id=c(1,2),names=c("Paracetamol", "Aspirin"),mw=mol2mw(mols))
+#' # showMolsDF(mols,df)
+showMolsDF <-function( mols , df = data.frame(), open = T ,  svg.size=200){
+  if(length(mols)!=nrow(df)){
+    warning("Mols and df nr rows not equal. Ignoring df.")
+    df<- molsGetProps(mols)
+    if(nrow(df)==0){ 
+      df<- data.frame(id=1:length(mols))
+    }
+  }
+  
+  df<-
+    apply(df,2,function(c){
+      if(is.factor(c)){ c <- unfactorc(c)}
+      c
+    })
+  
+  svgs <-  mol2svg ( mols)
+  svgs <- sapply(svgs, cleanSVG , svg.size,svg.size)
+
+  head <- paste(' <!DOCTYPE html><html>
+  <head>
+  <style>
+  .molimg {    
+    width :',svg.size ,'
+  }
+  th {
+    text-align: center;
+border: 1px solid #999;
+  }
+
+  td {    
+    vertical-align: center;
+    border: 1px solid #999;
+    padding: 0.5em;
+  }
+
+ 
+
+tbody tr:hover {
+  background: #D3D3D3;
+}
+
+ table {
+    border-collapse: collapse;
+  }
+  </style>
+  </head>
+  <body><table style="" border="1" >',collapse="")
+  tail <- '</table></body></html>'
+  fileName <- tempfile(pattern = "", tmpdir = tempdir(), fileext = ".html")
+  file <- file(fileName,"w")
+  writeLines(head,file)
+  writeLines(paste( "<tr><th></th>", paste("<th>",colnames(df), "</th>",collapse = "") ,"</tr>",collapse = "") ,file)
+  dummy<- sapply( 1:nrow(df) , function(i){
+    writeLines(paste( "<tr><td><div class='molimg' >",svgs[i],'</div></td>',
+                      paste("<td>",df[i,], "</td>",collapse = "") ,"</tr>",collapse = "") ,file)   
+  })
+  writeLines(tail,file)
+  close(file)
+  if(open){ browseURL(paste("file:///",fileName ,sep=""))}
+  return(fileName)
+}
+
+
+
 #' Map molecule properties to a list
 #'
 #' @param m A molecule
