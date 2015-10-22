@@ -106,13 +106,16 @@ cleanSVG<-function( svg , out.w, out.h ){
 #'
 #' @param mol A molecule
 is.molecule<-function(mol){
+    if(!is.list(mol)){
+      mol<-list(mol)
+    }
   # check if molecule is sanitized
     result <- F    
     tryCatch({
       kekulize(mol)
       s <- smiles2mol(mol2smiles(mol))      
       result <- T
-    }, error = function(e) {})    
+    }, error = print )    
     result
 }
 

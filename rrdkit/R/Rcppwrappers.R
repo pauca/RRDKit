@@ -177,6 +177,8 @@ showMolsGrid<-function( mols , group = 1, id="", open = T ,  svg.size=200){
 #' df <- data.frame(id=c(1,2),names=c("Paracetamol", "Aspirin"),mw=mol2mw(mols))
 #' # showMolsDF(mols,df)
 showMolsDF <-function( mols , df = data.frame(), open = T ,  svg.size=200){
+  if( !all(sapply( mols, function(m){ 
+      is.molecule(m)}))){ stop("Non molecules in mols. Check for NA's.")}
   if(length(mols)!=nrow(df)){
     warning("Mols and df nr rows not equal. Ignoring df.")
     df<- molsGetProps(mols)
