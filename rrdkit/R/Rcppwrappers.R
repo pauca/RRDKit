@@ -167,9 +167,8 @@ showMolsGrid<-function( mols , group = 1, id="", open = T ,  svg.size=200){
 #' Show molecules as 2D with df in browser
 #'
 #' @param mols a list of molecules
+#' @param df a data frame
 #' @param open if TRUE show output in browser
-#' @param group groups of molecules
-#' @param id property id that should be used for naming molecules
 #' @param svg.size  size of pictures
 #' @return Path to temporary generated html file
 #' @examples

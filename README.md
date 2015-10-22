@@ -79,6 +79,11 @@ showMols(mols)
 showMolsGrid(mols)  
 mol2svg(mols)  
 compute2D(mols)
+
+mols <- smiles2mol(c("CC(=O)NC1=CC=C(O)C=C1","CC(=O)OC1=CC=CC=C1C(O)=O"))
+df <- data.frame(id=c(1,2),names=c("Paracetamol", "Aspirin"),mw=mol2mw(mols))
+showMolsDF(mols,df)
+
 ```
 ### Descriptors
 ```
