@@ -291,7 +291,7 @@ molsSetProps <- function( ms, key=NULL, v=NULL ,df=NULL  ){
   if(!is.list(ms)){ 
     ms <- list(ms)
   }
-  
+  if(any(is.na(ms))){stop("NA instead of molecules")}
   if(!is.null(df)){
     for(col in colnames(df)){
       molsSetProps( ms, key=col, v=df[,col])
