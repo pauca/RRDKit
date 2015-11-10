@@ -1,0 +1,17 @@
+---
+title: "Examples"
+author: "pauca"
+date: "11/10/2015"
+output: 
+  html_document
+  toc:true
+---
+
+```{r}
+library(rrdkit)
+```
+
+# Embed an imaage
+```{r,   results='asis'}
+cleanSVG(mol2svg(smiles2mol("c1ccc2cc3c(ccc4ccccc43)cc2c1")), out.w = 200,out.h=200)
+```
