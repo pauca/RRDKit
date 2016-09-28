@@ -240,7 +240,7 @@ IntegerVector mol2morgan(  SEXP xp , unsigned int radius=2,unsigned int nBits=20
 void p_writeSdf(  std::string file,  SEXP  pv, bool setForceV3000 = false){
     Rcpp::List v(pv);
     int i =0;
-    SDWriter  sdw  = SDWriter::SDWriter(file); 
+    SDWriter  sdw  = SDWriter(file); 
     sdw.setForceV3000(setForceV3000);
     for (unsigned i = 0; i < v.size (); ++ i){
         RWMol *mol=(RWMol*)(R_ExternalPtrAddr(v[i]));
