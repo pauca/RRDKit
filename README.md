@@ -13,7 +13,7 @@ basic operations from RDKit. If you are looking for a more richer tool check RDK
 
 * R Packages: Rcpp, testthat, XML.
 
-* A RDKit installation. Preferably use latest RDKit version. Follow the
+* A RDKit installation. Preferably use latest RDKit version ( Latest Tested rdkit-Release_2016_03_1 ). Follow the
   instuctions in [http://www.rdkit.org/docs/Install.html](http://www.rdkit.org/docs/Install.html)). Check "Building the RDKit" section. 
   
 * Note that Python wrappers can be disabled (optional) and INCHI support must be enabled:
