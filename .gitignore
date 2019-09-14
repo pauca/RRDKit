@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 RRDKit.Rcheck
+rrdkit.Rcheck
 *.o
 *.so
 RRDKit/src/*.o
